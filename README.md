@@ -19,19 +19,15 @@ Todo: Maybe really separate default library code and user defined code. Integrat
 
 - Todo: Install with bower(?)
 - Fill in the variables in `variables.less`
--
+- Call the mixins you need in `project.less`
 
+Now you've got a clean and manageable setup. Such nice. Wow.
 
+After that go and make a mess in `elements.less`.
 
 ## TODO
 
-- Mature the file file structure and architecture
-- Plan a standard install mechanism (bower and/or npm)
-- Build step
-- Facilitate integration with external build setups. (grunt plugin?)
-
-<style>
-	#readme {
-		cursor: url(http://i.imgur.com/jWkjnwa.png);
-	}
-<style>
+- [ ] Mature the file file structure and architecture
+- [ ] Plan a standard install mechanism (bower and/or npm)
+- [ ] Build step
+- [ ] Facilitate integration with external build setups. (grunt plugin?)
