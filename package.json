@@ -1,0 +1,33 @@
+{
+  "name": "such.less",
+  "version": "0.0.0",
+  "description": "Such less. Many advance. So CSS. Wow.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/MarcDiethelm/such.less.git"
+  },
+  "keywords": [
+    "LessCSS",
+    "CSS",
+    "framework",
+    "less",
+    "responsive",
+    "best",
+    "practice"
+  ],
+  "author": "Marc Diethelm",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MarcDiethelm/such.less/issues"
+  },
+  "homepage": "https://github.com/MarcDiethelm/such.less",
+  "dependencies": {
+    "grunt-less-imports": "~0.8.7",
+    "grunt": "~0.4.2",
+    "assemble-less": "~0.5.3"
+  }
+}
