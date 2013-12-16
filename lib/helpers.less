@@ -42,6 +42,17 @@
 	border-radius: @topleft @topright @bottomright @bottomleft;
 }
 
+.linear-gradient(@colorStart: #eee, @colorEnd: #ccc, @start: 0%, @end: 100%) {
+	background: mix(@colorStart, @colorEnd); /* Old browsers */
+	background: -moz-linear-gradient(top, @colorStart @start, @colorEnd @end); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(@start,@colorStart), color-stop(@end,@colorEnd)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, @colorStart @start,@colorEnd @end); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, @colorStart @start,@colorEnd @end); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, @colorStart @start,@colorEnd @end); /* IE10+ */
+	background: linear-gradient(to bottom, @colorStart @start,@colorEnd @end); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='@{colorStart}', endColorstr='@{colorEnd}', GradientType=0); /* IE6-9 */
+}
+
 
 // Classes
 ////////////////////////////////////
