@@ -4,15 +4,12 @@
 // LINKS
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// I would prefer to have that in typography too. But it would get messy quickly
-// maybe define base in type but define any variations and exception here...
+// Base link style is in typography file. Apply and define any variations and exceptions here...
 a:link,
 a:visited,
 a:hover,
 a:active {
-	.copy();
-	color: @colorLink;
-	text-decoration: none;
+	#type > #link > .style(@colorLink);
 }
 
 // DEMO STUFF
@@ -27,28 +24,7 @@ a:active {
 	}
 }
 
-// overwrite wireframe boxes with dark wireframe boxes
-.wf-box {
-	&:extend(.wf-box-dark);
-}
 // grid demo
 .col {
 	&:extend(.wf-box);
-}
-
-.imgPathTest {
-	position: fixed;
-	right: 1em;
-	top: 1em;
-	width: 32px;
-	height: 32px;
-	opacity: .5;
-}
-
-.debug {
-	font-family: monospace;
-	opacity: .5;
-	&:before {
-		content: '> ';
-	}
 }
