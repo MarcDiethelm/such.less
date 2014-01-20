@@ -15,12 +15,15 @@
 	}*/
 
 	.center(@parent, @child, @childMaxWidth: @widthDefault) {
+		/**
+		 * use display block for both elements so parent spans the whole width of its container
+		 * and left/right margin auto centering works only for block elements anyway
+		 **/
 		@{parent} {
-			width: 100%;
-			margin-left: 2em;
-			margin-right: 2em;
+			display: block;
 		}
 		@{child} {
+			display: block;
 			max-width: @childMaxWidth;
 			margin-left: auto;
 			margin-right: auto;
