@@ -22,7 +22,7 @@
 		}
 
 		// Page //
-		.style(page,...) {
+		.style('default') {
 			font-size: large;
 
 			@media @tablet {
@@ -31,7 +31,7 @@
 		}
 
 		// Claim //
-		.style(default,...) {
+		.style('default') {
 			font-size: medium;
 
 			@media @tablet {
@@ -47,20 +47,20 @@
 		// Default //
 		.style(@_, @color: @colorDefault) {
 			color: @color;
-			font-size: @fontSize;
-			line-height: @lineHeight;
 			font-weight: @fontWeight;
 			font-family: @fontFamily;
 		}
 
 		// Default //
-		.style() {
-			#type > #copy > .style(null);
+		.style('default') {
+			font-size: @fontSize;
+			line-height: @lineHeight;
 		}
 
 		// Small //
-		.style(small,...) {
+		.style('small') {
 			font-size: x-small;
+			line-height: @lineHeight;
 		}
 
 	}
@@ -73,15 +73,13 @@
 		.style(@_, @color: @colorDefault) {
 			color: @color;
 			text-decoration: none;
-
-			&:hover {
-				text-decoration: none;
-			}
 		}
 
 		// Default //
-		.style(@color) {
-			#type > #link > .style(null, @color);
+		.style('default') {
+			&:hover {
+				text-decoration: underline;
+			}
 		}
 	}
 
@@ -93,19 +91,19 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 .title-page {
-	#type > #title > .style(page);
+	#type > #title > .style('page');
 }
 
 .title {
-	#type > #title > .style(default);
+	#type > #title > .style('default');
 }
 
 .copy { // base, can be used to 'reset' typography
-	#type > #copy > .style();
+	#type > #copy > .style('default');
 }
 
 .small {
-	#type > #copy > .style(small);
+	#type > #copy > .style('small');
 }
 
 // Variations (belong in elements.less I think)
