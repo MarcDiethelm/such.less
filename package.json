@@ -2,10 +2,9 @@
   "name": "such.less",
   "version": "0.0.0",
   "description": "Such less. Many advance. So CSS. Wow.",
-  "main": "index.js",
-  "scripts": {
-    "test": "mocha"
-  },
+  "main": "server.js",
+  "port": 3000,
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git://github.com/MarcDiethelm/such.less.git"
@@ -25,9 +24,11 @@
     "url": "https://github.com/MarcDiethelm/such.less/issues"
   },
   "homepage": "https://github.com/MarcDiethelm/such.less",
-  "dependencies": {
-    "grunt-less-imports": "~0.8.7",
+  "dependencies": {},
+  "devDependencies": {
+    "grunt-less-imports": "~0.9.0",
     "grunt": "~0.4.2",
-    "assemble-less": "~0.5.3"
+    "assemble-less": "~0.7.0",
+    "grunt-contrib-watch": "~0.5.3"
   }
 }
