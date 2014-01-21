@@ -29,5 +29,5 @@ After that go and make a mess in `elements.less`.
 
 - [ ] Mature the file file structure and architecture
 - [ ] Plan a standard install mechanism (bower and/or npm)
-- [ ] Build step
+- [X] Build step
 - [ ] Facilitate integration with external build setups. (grunt plugin?)
