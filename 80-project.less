@@ -4,8 +4,12 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 html {
-	#type > #copy > .style('default'; @colorCopy);
-	#layout > #page > .style(@colorBgBody);
+	#type > #copy > .style('default'; @color-copy);
+	#layout > #page > .style(@color-bg-body);
 }
 
-#layout > .center(body, main, @maxContentWidth);
+#layout > .center(body, main);
+
+body {
+	#layout > #page > .content-boundaries(0, @max-content-width);
+}
