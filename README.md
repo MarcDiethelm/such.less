@@ -5,7 +5,7 @@ Such less. Many advance. So CSS. Wow.
 
 ## Why
 
-Mainly to collect, standardize and share some amazing best practices we have found while using LessCSS for frontend projects, from small to huge. Also to brag about them a bit. Wow.
+Mainly to collect, standardize and share some amazing best practices we have found while using LessCSS for frontend projects, from small to huge. Also to brag about them ~~a bit~~. Wow.
 
 Imagine if you could just drop some modular less files into your project and define some variables to set up the typography, a grid, re-usable responsive layouts, get some styles for wireframing and of course many truly useful helpers.
 
