@@ -7,7 +7,7 @@ module.exports = function(grunt) {
 
 		pkg                         : grunt.file.readJSON('package.json')
 
-		,staticUriPrefixCss         : ''
+		,staticBaseUriCss         : ''
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -43,7 +43,7 @@ module.exports = function(grunt) {
 		,less: {
 			base: {
 				options: {
-					 banner         : "@static-prefix: '<%=staticUriPrefixCss%>';"
+					 banner         : "@static-base: '<%=staticBaseUriCss%>';"
 					,imports: {
 						reference   : ['../../lib/reference/*.less']
 					}
