@@ -4,7 +4,9 @@
   "description": "Such less. Many advance. So CSS. Wow.",
   "main": "server.js",
   "port": 3000,
-  "scripts": {},
+  "scripts": {
+    "build"     : "grunt --gruntfile=Gruntfile.js"
+  },
   "repository": {
     "type": "git",
     "url": "git://github.com/MarcDiethelm/such.less.git"
