@@ -1,12 +1,3 @@
-// MEDIA QUERIES
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-@phone: ~'(max-width: 600px)';
-@tablet: ~'(min-width: 601px) and (max-width: 900px)';
-@tablet-and-down: ~'(max-width: 900px)';
-@tablet-and-up: ~'(min-width: 601px)';
-@desktop: ~'(min-width: 901px)';
-
 /**
  * RESPONSIVE LAYOUTS
  *
@@ -45,11 +36,11 @@
 		.col-span(12);
 	}
 
-	@media @tablet {
+	@media @m-medium {
 		#responsive > .cleared-columns(2);
 	}
 
-	@media @desktop {
+	@media @m-large {
 		#responsive > .cleared-columns(3);
 	}
 }
@@ -66,7 +57,7 @@
 		.col-span(12);
 	}
 
-	@media @desktop {
+	@media @m-large {
 		#responsive > .cleared-columns(2);
 	}
 }
@@ -83,7 +74,7 @@
 		.col-span(12);
 	}
 
-	@media @tablet-and-up {
+	@media @m-medium-and-up {
 		> .col-1 {
 			.col-span(8);
 		}
@@ -106,11 +97,11 @@
 		.col-span(12);
 	}
 
-	@media @tablet {
+	@media @m-medium {
 		#responsive > .cleared-columns(2);
 	}
 
-	@media @desktop {
+	@media @m-large {
 		#responsive > .cleared-columns(4);
 	}
 }
@@ -127,7 +118,7 @@
 		.col-span(@grid-max-cols / 5);
 	}
 
-	@media @desktop {
+	@media @m-large {
 		> .col {
 			.col-span(@grid-max-cols / 7);
 		}

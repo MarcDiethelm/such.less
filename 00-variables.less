@@ -20,8 +20,28 @@
 
 // BREAKPOINTS and MEDIAQUERIES
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// can we move some stuff to layout? automate creation of some things?
-// todo
+
+// small is up to
+@small-max: 600px;
+@m-small: ~"(max-width: @{small-max})"; // @media @variable: broken in lessphp! https://github.com/leafo/lessphp/issues/335
+
+// medium starts at
+@medium-min: 601px;
+@m-medium-and-up: ~"(min-width: @{medium-min})";
+
+// medium ends at
+@medium-max: 900px;
+@m-medium-and-down: ~"(max-width: @{medium-max})";
+
+// medium is between
+@m-medium: ~"(min-width: @{medium-min}) and (max-width: @{medium-max})";
+
+// large starts at
+@large-min: 901px;
+@m-large: ~"(min-width: @{large-min})";
+
+// Retina Resolution
+@m-retina: ~"(-webkit-min-device-pixel-ratio: 2) /* Webkit-based browsers */, (min--moz-device-pixel-ratio: 2) /* Older Firefox browsers (prior to Firefox 16) */, (min-resolution: 2dppx) /* The standard way */, (min-resolution: 192dpi) /* dppx fallback */";
 
 // FOO
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
