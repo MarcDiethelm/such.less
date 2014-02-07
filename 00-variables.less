@@ -14,6 +14,7 @@
 
 // LAYOUT
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 @max-content-width  : 940px;
 @grid-cols          : 12;
 @gutter-width       : 20px;
@@ -23,7 +24,7 @@
 
 // small is up to
 @small-max: 600px;
-@m-small: ~"(max-width: @{small-max})"; // @media @variable: broken in lessphp! https://github.com/leafo/lessphp/issues/335
+@m-small: ~"(max-width: @{small-max})";
 
 // medium starts at
 @medium-min: 601px;
@@ -41,6 +42,7 @@
 @m-large: ~"(min-width: @{large-min})";
 
 // Retina Resolution
+// https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Media_queries#-moz-device-pixel-ratio
 @m-retina: ~"(-webkit-min-device-pixel-ratio: 2) /* Webkit-based browsers */, (min--moz-device-pixel-ratio: 2) /* Older Firefox browsers (prior to Firefox 16) */, (min-resolution: 2dppx) /* The standard way */, (min-resolution: 192dpi) /* dppx fallback */";
 
 // FOO
