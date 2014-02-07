@@ -42,8 +42,11 @@
 @m-large: ~"(min-width: @{large-min})";
 
 // Retina Resolution
+@px-ratio: 1.5;
+@default-dpi: 96;
+@hdpi: @default-dpi * @px-ratio;
 // https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Media_queries#-moz-device-pixel-ratio
-@m-retina: ~"(-webkit-min-device-pixel-ratio: 2) /* Webkit-based browsers */, (min--moz-device-pixel-ratio: 2) /* Older Firefox browsers (prior to Firefox 16) */, (min-resolution: 2dppx) /* The standard way */, (min-resolution: 192dpi) /* dppx fallback */";
+@m-retina: ~"(-webkit-min-device-pixel-ratio: @{px-ratio}) /* Webkit-based browsers */, (min--moz-device-pixel-ratio: @{px-ratio}) /* Older Firefox browsers (prior to Firefox 16) */, (min-resolution: @{px-ratio}dppx) /* The standard way */, (min-resolution: @{hdpi}dpi) /* dppx fallback */";
 
 // FOO
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
