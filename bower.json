@@ -21,11 +21,11 @@
   "license": "MIT",
   "ignore": [
     "node_modules/",
+    "build/",
     "test",
     ".idea/",
     ".gitignore",
     ".travis.yml",
-    ".DS_Store",
-    "build,"
+    ".DS_Store"
   ]
 }
