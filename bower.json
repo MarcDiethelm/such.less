@@ -1,0 +1,31 @@
+{
+  "name": "such.less",
+  "version": "0.0.0",
+  "homepage": "https://github.com/MarcDiethelm/such.less",
+  "authors": [
+    "Marc Diethelm",
+    "Simon Harte"
+  ],
+  "description": "Such less. Many advance. So CSS. Wow.",
+  "keywords": [
+    "LessCSS",
+    "CSS",
+    "framework",
+    "less",
+    "responsive",
+    "best",
+    "practice",
+    "grid",
+    "layout"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "node_modules/",
+    "test",
+    ".idea/",
+    ".gitignore",
+    ".travis.yml",
+    ".DS_Store",
+    "build,"
+  ]
+}
