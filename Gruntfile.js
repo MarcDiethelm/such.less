@@ -7,7 +7,7 @@ module.exports = function(grunt) {
 
 		pkg                         : grunt.file.readJSON('package.json')
 
-		,staticBaseUriCss         : ''
+		,staticBaseUriCss           : ''
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -16,6 +16,7 @@ module.exports = function(grunt) {
 		,buildPath                  : 'build'
 		,tmpPath                    : '<%=buildPath%>/tmp'
 		,destCss                    : '<%=buildPath%>'
+		,fileName                   : 'styles'
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -33,7 +34,7 @@ module.exports = function(grunt) {
 		// Configure Grunt plugins
 
 		,less_imports: {
-			base: {
+			all: {
 				options: {}
 				,src                : '<%=sources.styles%>'
 				,dest               : '<%=tmpPath%>/@import.less'
@@ -41,15 +42,22 @@ module.exports = function(grunt) {
 		}
 
 		,less: {
-			base: {
+			options: {
+				banner              : "@static-base: '<%=staticBaseUriCss%>';"
+				,imports: {
+					reference       : ['../../lib/reference/*.less']
+				}
+			},
+			plain: {
+				src                 : '<%=tmpPath%>/@import.less'
+				,dest               : '<%=destCss%>/<%=fileName%>.css'
+			},
+			min: {
 				options: {
-					 banner         : "@static-base: '<%=staticBaseUriCss%>';"
-					,imports: {
-						reference   : ['../../lib/reference/*.less']
-					}
+					cleancss        : true
 				}
 				,src                : '<%=tmpPath%>/@import.less'
-				,dest               : '<%=destCss%>/styles.css'
+				,dest               : '<%=destCss%>/<%=fileName%>.min.css'
 			}
 		}
 
@@ -69,7 +77,7 @@ module.exports = function(grunt) {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Define build tasks                            // use actual task name (first part before colon)!
 
-	grunt.registerTask('build-css',         ['less_imports:base', 'less:base']);
+	grunt.registerTask('build-css', ['less_imports:all', 'less']);
 
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
