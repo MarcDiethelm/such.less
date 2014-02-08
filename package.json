@@ -5,7 +5,7 @@
   "main": "server.js",
   "port": 3000,
   "scripts": {
-    "build"     : "grunt --gruntfile=Gruntfile.js"
+    "build": "grunt --gruntfile=Gruntfile.js"
   },
   "repository": {
     "type": "git",
@@ -18,9 +18,14 @@
     "less",
     "responsive",
     "best",
-    "practice"
+    "practice",
+    "grid",
+    "layout"
   ],
-  "author": "Marc Diethelm",
+  "contributors": [
+    {"name": "Marc Diethelm"},
+    {"name": "Simon Harte"}
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/MarcDiethelm/such.less/issues"
