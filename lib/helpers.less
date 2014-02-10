@@ -7,11 +7,11 @@
 	box-sizing: @boundaries;
 }
 
-.bg-beyond() {
-	margin-left: -500%;
-	margin-right: -500%;
-	padding-left: 500%;
-	padding-right: 500%;
+.bg-beyond(@width: 500%) {
+	margin-left: -@width;
+	margin-right: -@width;
+	padding-left: @width;
+	padding-right: @width;
 	// bg-beyond with .clearfixed rows pushes content down. fix with...
 	// clear: both; // or
 	// overflow: hidden;
