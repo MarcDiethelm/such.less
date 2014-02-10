@@ -8,42 +8,39 @@
 	@font-weight: normal;
 	@color-default: #000;
 
-	//// for demo only
-	@m-medium: ~'(min-width: 601px)';
-	
 	.rendering(@_) {
 		-moz-osx-font-smoothing: grayscale;
 		-webkit-font-smoothing: antialiased;
 	}
-	
+
 	#title {
 		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		@font-weight: bold;
-		@color-default: grey;
+		@color-default: gray;
 		@line-height: 20px;
 
-		// Default //
+		// all //
 		.style(@_, @color: @color-default) {
 			color: @color;
 			font-weight: @font-weight;
 		}
 
-		// Page //
-		.style('default';...) {
+		// default //
+		.style('default'; ...) {
 			font-size: large;
 			line-height: @line-height;
 
-			@media @m-medium {
+			@media @m-medium-and-up {
 				font-size: x-large;
 			}
 		}
 
-		// Claim //
-		.style('default',...) {
+		// sub //
+		.style('sub'; ...) {
 			font-size: medium;
 			line-height: @line-height;
 
-			@media @m-medium {
+			@media @m-medium-and-up {
 				font-size: large;
 			}
 		}
@@ -53,20 +50,20 @@
 	#copy {
 		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-		// Default //
+		// all //
 		.style(@_, @color: @color-default) {
 			color: @color;
 			font-weight: @font-weight;
 			font-family: @font-family;
 		}
 
-		// Default //
+		// default //
 		.style('default';...) {
 			font-size: @font-size;
 			line-height: @line-height;
 		}
 
-		// Small //
+		// small //
 		.style('small';...) {
 			font-size: x-small;
 			line-height: @line-height;
@@ -76,15 +73,15 @@
 
 	#link {
 		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		
-		// Default //
+
+		// all //
 		.style(@_, @color: @color-default) {
 			color: @color;
 			text-decoration: none;
 		}
 
-		// Default //
-		.style('default') {
+		// default //
+		.style('default'; ...) {
 			&:hover {
 				text-decoration: underline;
 			}
@@ -96,19 +93,20 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 .title-page {
-	#type > #title > .style('page');
+	#type > #title > .style('page'; inherit);
 }
 
 .title {
-	#type > #title > .style('default');
+	#type > #title > .style('default'; inherit);
 }
 
-.copy { // base, can be used to 'reset' typography
-	#type > #copy > .style('default');
+.copy {
+	// base, can be used to 'reset' typography
+	#type > #copy > .style('default'; inherit);
 }
 
 .small {
-	#type > #copy > .style('small');
+	#type > #copy > .style('small'; inherit);
 }
 
 /**
