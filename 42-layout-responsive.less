@@ -1,28 +1,50 @@
 /**
- * RESPONSIVE LAYOUTS
+ * You can use the following mixins to easily set up responsive layouts.
+ * For grid layouts with non-equal span sizes use incrementing col-[integer] classes and apply sizes to each of these classes:
  *
- * Some notes:
- * - always use the direct child selector for columns so nested layouts don't interfere
- * - for grid layouts with different span sizes use incrementing .col-(num) classes and apply sizes to these classes
- * - use the #responsive > .cleared-columns([column-count]) mixin to easily and properly set up all same width columns within a responsive layout.
- *   Note that you must distinguish different viewports through their media query here because it may generate different :nth-child selectors
+ * .col-set([column name], [column span width]):
+ * Standard mixin to set up a column in a responsive layout
+ *
+ * To set up layouts with equal width columns you only specify the width in `.col-set-equal`.
+ *
+ * .col-set-equal([column span width]):
+ * Extended mixin to set up equal width columns and properly clear them at the same time
+ *
+ * Note: Every use of .col-set-equal() must be wrapped in a media query (even for smallest "mobile first" viewport).
+ *       Because else the `nth-child` selectors used in ` .col-set-equal()` for proper clearing would be passed on to all
+ *       other viewports/media queries in the layout.
+ *
+ * .col-clear([columns per line]):
+ * Use this to manually clear every nth column if columns differ in height.
+ * This ensures that a grid layout can have only [columns per line] columns on one horizontal grid line.
+ *
  **/
 
-#responsive {
-	// grid-max-cols from responsibly
-	@max-cols: @grid-max-cols;
+// mixins //
 
-	// simple mixin to clear float on every new grid line
-	.cleared-columns(@columns) {
-		> .col {
-			.col-span(@max-cols / @columns);
-
-			&:nth-child(@{columns}n+1) {
-				clear: left;
-			}
-		}
+.col-clear(@columns) {
+	> .col:nth-child(@{columns}n+1) {
+		clear: left;
 	}
 }
+
+.col-set(@col-name, @col-span) {
+	> .@{col-name} {
+		.col-span(@col-span);
+	}
+}
+
+.col-set-equal(@col-span) {
+	@clear: @grid-max-cols / @col-span;
+	
+	// use default col-set mixin to generate selector
+	.col-set(col, @col-span);
+	
+	// with equal columns, clear every nth element for proper alignment
+	.col-clear(@clear);
+}
+
+// layouts //
 
 .layout-responsive-1 {
 	/**
@@ -32,16 +54,16 @@
 	* phone: 12
 	**/
 
-	> .col {
-		.col-span(12);
+	@media  @m-small {
+		.col-set-equal(12);
 	}
 
 	@media @m-medium {
-		#responsive > .cleared-columns(2);
+		.col-set-equal(6);
 	}
 
 	@media @m-large {
-		#responsive > .cleared-columns(3);
+		.col-set-equal(4);
 	}
 }
 
@@ -53,12 +75,12 @@
 	* phone: 12
 	**/
 
-	> .col {
-		.col-span(12);
+	@media @m-medium-and-down {
+		.col-set-equal(12);
 	}
 
 	@media @m-large {
-		#responsive > .cleared-columns(2);
+		.col-set-equal(6);
 	}
 }
 
@@ -70,18 +92,13 @@
 	* phone: 12
 	**/
 
-	> .col {
-		.col-span(12);
+	@media @m-small {
+		.col-set-equal(12);
 	}
 
 	@media @m-medium-and-up {
-		> .col-1 {
-			.col-span(8);
-		}
-
-		> .col-2 {
-			.col-span(4);
-		}
+		.col-set(col-1, 8);
+		.col-set(col-2, 4);
 	}
 }
 
@@ -93,16 +110,16 @@
 	* phone: 12
 	**/
 
-	> .col {
-		.col-span(12);
+	@media @m-small {
+		.col-set-equal(12);
 	}
 
 	@media @m-medium {
-		#responsive > .cleared-columns(2);
+		.col-set-equal(6);
 	}
 
 	@media @m-large {
-		#responsive > .cleared-columns(4);
+		.col-set-equal(3);
 	}
 }
 
@@ -114,13 +131,11 @@
 	* phone: 5
 	**/
 
-	> .col {
-		.col-span(@grid-max-cols / 5);
+	@media @m-medium-and-down {
+		.col-set(col, @grid-max-cols / 5);
 	}
 
 	@media @m-large {
-		> .col {
-			.col-span(@grid-max-cols / 7);
-		}
+		.col-set(col, @grid-max-cols / 7);
 	}
 }
