@@ -4,16 +4,35 @@ such.less
 Such less. Many advance. So CSS. Wow.
 
 ## Why
+To make setting up modern frontend CSS an efficient, structured and fun affair. To defeat the inherent complexity of modern web design with amazing best practices we have found while using LessCSS for frontend projects, from small to huge.
 
-Mainly to collect, standardize and share some amazing best practices we have found while using LessCSS for frontend projects, from small to huge. Also to brag about them ~~a bit~~. Wow.
+Imagine if you could just drop some modular less files into your project and define some variables to set up the typography, create a grid, re-usable responsive layouts, get styles for wireframing and of course many truly useful helpers.
 
-Imagine if you could just drop some modular less files into your project and define some variables to set up the typography, a grid, re-usable responsive layouts, get some styles for wireframing and of course many truly useful helpers.
-
-This project aims to work as a collection of libraries. You set your configuration centrally in one file using less variables and then call the appropriate library mixins ~~all in one place~~ passing your variables into them. (After that you can tweak the libraries for your individual needs.)
+This project works as a collection of separate bundles. You set your configuration centrally in one file using less variables and then call the appropriate bundle mixins ~~all in one place~~ passing your variables into them. (After that you can tweak the libraries for your individual needs.) And your project's base styles are done!
 
 Such less.
 
+This project was originally created to collect, standardize and share our continually evolving CSS tooling. Also to brag about it.
+
 Todo: Maybe really separate default library code and user defined code. Integrate with less unlocks.
+
+## What's in it?
+such.less consists in a large part of .less "bundles" that define and structure different "areas" of a project's styles. The full list of components is...
+
+- Bundles
+	- Fonts [todo]
+	- Typography
+	- Layout [tbd]
+	- Responsive layouts
+- Libs
+	- Helpers
+	- "Responsibly" grid
+	- Wireframing
+- Elements
+- Project [tbd]
+- Structured variables that the bundles, elements and project depend on
+
+The bundles are described in detail in the Wiki [todo].
 
 ## Getting started
 - Install with (bower? see *TODO* below)
@@ -43,6 +62,7 @@ __Use the included Grunt build:__
 - Open a terminal, change to the project folder.
 - Start the server with `npm start`.
 - Now you can visit `localhost:3000` in a browser.
+
 
 ## TODO
 - [X] Mature the file file structure and architecture
