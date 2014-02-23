@@ -5,11 +5,11 @@
 // - 00-variables.less
 
 #type {
-	@font-family: @font-default;
-	@font-size: 13px;
-	@line-height: 15px;
-	@font-weight: normal;
-	@color-default: #000;
+	@font-family    : @font-default;
+	@font-size      : @font-size-default;
+	@line-height    : @line-height-default;
+	@font-weight    : normal;
+	@color          : @color-copy;
 
 	.rendering(@_) {
 		-moz-osx-font-smoothing: grayscale;
@@ -20,11 +20,11 @@
 		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		@font-family: @font-title;
 		@font-weight: bold;
-		@color-default: gray;
+		@color: gray;
 		@line-height: 20px;
 
 		// all //
-		.style(@_, @color: @color-default) {
+		.style(@_, @color: @color) {
 			color: @color;
 			font-family: @font-title;
 			font-weight: @font-weight;
@@ -56,7 +56,7 @@
 		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 		// all //
-		.style(@_, @color: @color-default) {
+		.style(@_, @color: @color) {
 			color: @color;
 			font-weight: @font-weight;
 			font-family: @font-family;
@@ -80,7 +80,7 @@
 		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 		// all //
-		.style(@_, @color: @color-default) {
+		.style(@_, @color: @color) {
 			color: @color;
 			text-decoration: none;
 		}
@@ -94,7 +94,7 @@
 	}
 }
 
-// Derived Classes
+// Create classes
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 .title-page {
