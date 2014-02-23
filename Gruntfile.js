@@ -7,13 +7,13 @@ module.exports = function(grunt) {
 
 		pkg                         : grunt.file.readJSON('package.json')
 
-		,staticBaseUriCss           : ''
+		,staticBaseUriCss           : '/static'
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		// Output destinations
 
-		,buildPath                  : 'build'
+		,buildPath                  : 'static/build'
 		,tmpPath                    : '<%=buildPath%>/tmp'
 		,destCss                    : '<%=buildPath%>'
 		,fileName                   : 'styles'

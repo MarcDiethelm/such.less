@@ -15,7 +15,7 @@ var http = require('http')
 http.createServer(function(req, res) {
 	var url = req.url
 	   ,htmlPath = './pages/'
-	   ,staticPath = '/build'
+	   ,staticPath = '/static'
 	   ,isStaticRequest = (url.indexOf(staticPath) === 0)
 	   ,isFaviconRequest = (url === '/favicon.ico')
 	   ,file
