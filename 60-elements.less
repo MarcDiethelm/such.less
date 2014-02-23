@@ -7,6 +7,11 @@ html {
 	#type > .rendering('antialiased');
 	#layout > #page > .style(@color-bg-body);
 	.visual-viewports(); // Remove for production
+
+	padding: 0 1em;
+	@media @m-medium-up {
+		padding: 0 2em;
+	}
 }
 
 // generate selectors with default styling to center 2nd selector
