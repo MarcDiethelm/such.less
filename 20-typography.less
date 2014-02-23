@@ -21,7 +21,7 @@
 		@font-family: @font-title;
 		@font-weight: bold;
 		@color: gray;
-		@line-height: 20px;
+		@line-height: 22px;
 
 		// applies to all below //
 		.style(@_, @color: @color) {
@@ -31,20 +31,21 @@
 		}
 
 		.style('default'; ...) {
-			font-size: large;
-			line-height: @line-height;
-
-			@media @m-medium-up {
-				font-size: x-large;
-			}
-		}
-
-		.style('sub'; ...) {
 			font-size: medium;
 			line-height: @line-height;
 
 			@media @m-medium-up {
 				font-size: large;
+			}
+		}
+
+		.style('page'; ...) {
+			font-size: large;
+			line-height: 26px; // old browsers
+			line-height: 2rem;
+
+			@media @m-medium-up {
+				font-size: x-large;
 			}
 		}
 
