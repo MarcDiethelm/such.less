@@ -23,14 +23,13 @@
 		@color: gray;
 		@line-height: 20px;
 
-		// all //
+		// applies to all below //
 		.style(@_, @color: @color) {
 			color: @color;
 			font-family: @font-title;
 			font-weight: @font-weight;
 		}
 
-		// default //
 		.style('default'; ...) {
 			font-size: large;
 			line-height: @line-height;
@@ -40,7 +39,6 @@
 			}
 		}
 
-		// sub //
 		.style('sub'; ...) {
 			font-size: medium;
 			line-height: @line-height;
@@ -55,20 +53,18 @@
 	#copy {
 		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-		// all //
+		// applied to all below //
 		.style(@_, @color: @color) {
 			color: @color;
 			font-weight: @font-weight;
 			font-family: @font-family;
 		}
 
-		// default //
 		.style('default'; ...) {
 			font-size: @font-size;
 			line-height: @line-height;
 		}
 
-		// small //
 		.style('small'; ...) {
 			font-size: x-small;
 			line-height: @line-height;
@@ -79,13 +75,12 @@
 	#link {
 		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-		// all //
+		// applies to all below //
 		.style(@_, @color: @color) {
 			color: @color;
 			text-decoration: none;
 		}
 
-		// default //
 		.style('default'; ...) {
 			&:hover {
 				text-decoration: underline;
