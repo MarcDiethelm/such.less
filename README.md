@@ -28,9 +28,9 @@ such.less consists in a large part of .less "bundles" that define and structure 
 	- Helpers
 	- "Responsibly" grid
 	- Wireframing
-- Elements
-- Project [tbd]
-- Structured variables that the bundles, elements and project depend on
+- Setup
+- Styles (everything else)
+- Structured variables that the Bundles, Setup and Styles depend on
 
 The bundles are described in detail in the Wiki [todo].
 
@@ -41,7 +41,7 @@ The bundles are described in detail in the Wiki [todo].
 
 Now you've got a clean and manageable setup. Such nice. Wow.
 
-After that go and make a mess in `elements.less`.
+After that go and make a mess in `styles.less`. And adapt the bundles to your needs.
 
 ## Build
 __Either use your own build setup__ including all `.less` files in the such.less root and in `lib/`. Typical build tools that people use are [Gulp](https://github.com/gulpjs/gulp/), [Grunt](http://gruntjs.com/) and the venerable `make`.
