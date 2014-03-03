@@ -20,7 +20,7 @@ Todo: Maybe really separate default library code and user defined code. Integrat
 such.less consists in a large part of .less "bundles" that define and structure different "areas" of a project's styles. The full list of components is...
 
 - Bundles
-	- Fonts [todo]
+	- Fonts
 	- Typography
 	- Layout [tbd]
 	- Responsive layouts
@@ -65,8 +65,8 @@ __Use the included Grunt build:__
 
 
 ## TODO
-- [X] Mature the file file structure and architecture
+- [x] Mature the file file structure and architecture
 - [ ] Plan install mechanisms (bower, npm, component, jam, volo...)
-- [X] Build step
+- [x] Build step
 - [ ] Decide what to do with layout.less
 - [ ] Facilitate integration with external build setups. (grunt plugin?)
