@@ -13,7 +13,9 @@ var http = require('http')
 /* le handmade static file server. nice. */
 
 http.createServer(function(req, res) {
-	var url = req.url
+	var aUrl = req.url.split('?')
+	   ,url = aUrl[0]
+	   //,query = aUrl[1]
 	   ,htmlPath = './pages/'
 	   ,staticPath = '/static'
 	   ,isStaticRequest = (url.indexOf(staticPath) === 0)
@@ -49,7 +51,6 @@ http.createServer(function(req, res) {
 			res.end();
 		}
 	});
-
 }).listen(port);
 
 console.log('such http server. much listening. port %d. wow.\n', port);
