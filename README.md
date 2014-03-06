@@ -10,7 +10,7 @@ Imagine if you could just drop some modular less files into your project and def
 
 This project works as a collection of separate bundles. You set your configuration centrally in one file using less variables and then call the appropriate bundle mixins ~~all in one place~~ passing your variables into them. (After that you can tweak the libraries for your individual needs.) And your project's base styles are done!
 
-Such less.
+Such less. ![Such shibe](https://github.com/MarcDiethelm/such.less/blob/develop/pages/mini-doge.png?raw=true)
 
 This project was originally created to collect, standardize and share our continually evolving CSS tooling. Also to brag about it.
 
