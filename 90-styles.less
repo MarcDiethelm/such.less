@@ -3,6 +3,15 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // grid demo
-.demo-grid .col {
-	&:extend(.wf-box);
+.demo-grid {
+
+	th {
+		text-align: left;
+		padding-right: 1em;
+	}
+	.col {
+		&:extend(.wf-box);
+		margin-bottom: 1em;
+	}
 }
+
