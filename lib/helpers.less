@@ -31,7 +31,7 @@
 }
 
 // messy placeholder color mixin because placeholder selectors can't be chained
-.placeholder-color(@color: inherit, ...) {
+.placeholder-color(@color: inherit) {
 	::-webkit-input-placeholder {
 		// WebKit browsers
 		color: @color;
@@ -45,25 +45,6 @@
 		color: @color;
 	}
 	:-ms-input-placeholder {
-		// Internet Explorer 10+
-		color: @color;
-	}
-}
-
-.placeholder-color(@color: inherit, @state) when (@state = 'hover'), (@state = 'focus'), (@state = 'active') {
-	&::-webkit-input-placeholder {
-		// WebKit browsers
-		color: @color;
-	}
-	&:-moz-placeholder {
-		// Mozilla Firefox 4 to 18
-		color: @color;
-	}
-	&::-moz-placeholder {
-		// Mozilla Firefox 19+
-		color: @color;
-	}
-	&:-ms-input-placeholder {
 		// Internet Explorer 10+
 		color: @color;
 	}
