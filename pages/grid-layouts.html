@@ -9,24 +9,33 @@
 		<main>
 			<h1 class="title-page">Responsibly</h1>
 
-			<h2 class="title">Grid Definitions</h2>
+			<h2 class="title">Grid Setup</h2>
 			<table>
 				<tbody>
 				<tr>
 					<th>Type</th>
-					<td>fluid</td>
+					<td><span class="_type"></span></td>
 				</tr>
 				<tr>
-					<th>Content width max</th>
-					<td>940px</td>
-				</tr>
-				<tr>
-					<th>Gutter</th>
-					<td>20px as percentage of max. content width (2.083%)</td>
+					<th>Max width</th>
+					<td><span class="_max-width"></span></td>
 				</tr>
 				<tr>
 					<th>Columns</th>
 					<td>12</td>
+				</tr>
+				<tr>
+					<th>Gutter</th>
+					<td>
+						<span class="_gutter-width"></span> <span class="_reset">(@<span class="_max-width"></span> grid width)</span><br>
+						<span class="_gutter-width-percent"></span> <span class="_reset">(calculated)</span>
+					</td>
+				</tr>
+				<tr>
+					<th>Precision</th>
+					<td>
+						<span class="_precision"></span> decimal places
+					</td>
 				</tr>
 				</tbody>
 			</table>
