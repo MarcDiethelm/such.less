@@ -8,7 +8,7 @@ To make setting up modern frontend CSS an efficient, structured and fun affair. 
 
 Imagine if you could just drop some modular less files into your project and define some variables to set up the typography, create a grid, re-usable responsive layouts, get styles for wireframing and of course many truly useful helpers.
 
-This project works as a collection of separate bundles. You set your configuration centrally in one file using less variables and then call the appropriate bundle mixins ~~all in one place~~ passing your variables into them. (After that you can tweak the libraries for your individual needs.) And your project's base styles are done!
+This project works as a collection of separate bundles. It gives you structures and best practices rather than a styled framework. You set your configuration centrally in one file using less variables and then call the appropriate bundle mixins ~~all in one place~~ passing your variables into them. (After that you can tweak the libraries for your individual needs.) And your project's base styles are done!
 
 Such less. ![Such shibe](https://github.com/MarcDiethelm/such.less/blob/develop/pages/mini-doge.png?raw=true)
 
@@ -26,7 +26,7 @@ such.less consists in a large part of .less "bundles" that define and structure 
 	- Responsive layouts
 - Libs
 	- Helpers
-	- "Responsibly" grid
+	- "responsibly" grid
 	- Wireframing
 - Setup
 - Styles (everything else)
@@ -37,7 +37,7 @@ The bundles are described in detail in the Wiki [todo].
 ## Getting started
 - Install with (bower? see *TODO* below)
 - Fill in the variables in `variables.less`
-- Call the mixins you need in `elements.less`
+- Call the mixins you need in `setup.less` and `styles.less`
 
 Now you've got a clean and manageable setup. Such nice. Wow.
 
@@ -65,7 +65,7 @@ __Use the included Grunt build:__
 
 
 ## TODO
-- [x] Mature the file file structure and architecture
+- [x] Mature the file structure and architecture
 - [ ] Plan install mechanisms (bower, npm, component, jam, volo...)
 - [x] Build step
 - [ ] Decide what to do with layout.less
