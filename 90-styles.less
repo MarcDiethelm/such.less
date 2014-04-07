@@ -5,6 +5,13 @@
 // grid demo
 .demo-grid {
 
+	.title {
+		margin-top: 2em;
+		padding-top: .5em;
+		display: block;
+		border-top: 1px solid lighten(@color-copy, 50%);
+	}
+
 	th {
 		text-align: left;
 		padding-right: 3.5em;
@@ -40,6 +47,10 @@
 	}
 	._precision:after {
 		content: '@{decimal-places}';
+	}
+	hr {
+		border: none;
+		border-bottom: 1px solid lighten(@color-copy, 50%);
 	}
 }
 
