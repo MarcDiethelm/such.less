@@ -28,7 +28,8 @@
 		.style(@_, @color: @color) {
 			color: @color;
 			font-family: @font-title;
-			font-weight: @font-weight;
+			font-weight: @font-weight !important; // (!important): Prevent faux bold / double-bold styling for webfonts
+			font-style: normal !important; // (!important): Prevent faux italic / double-italic styling for webfonts
 		}
 
 		.style('default'; ...) {
