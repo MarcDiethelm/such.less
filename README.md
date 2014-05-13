@@ -43,6 +43,18 @@ Now you've got a clean and manageable setup. Such nice. Wow.
 
 After that go and make a mess in `styles.less`. And adapt the bundles to your needs.
 
+### Intranet Explorer
+
+If you need to support old IE versions you should probably include some polyfills like so:
+
+```html
+	<!--[if lt IE 9]>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.1.0/respond.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/selectivizr/1.0.2/selectivizr-min.js"></script>
+	<![endif]-->
+```
+
 ## Build
 __Either use your own build setup__ including all `.less` files in the such.less root and in `lib/`. Typical build tools that people use are [Gulp](https://github.com/gulpjs/gulp/), [Grunt](http://gruntjs.com/) and the venerable `make`.
 
