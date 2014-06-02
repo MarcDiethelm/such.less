@@ -1,11 +1,35 @@
 // Dependencies:
-// - lib/responsibly.less
+// - 00-variables.les
+// - lib/spartan.less
+
+// BASE LAYOUT
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+#layout {
+	// fallback values if mixins get called without params
+	@min-width-default: 0;
+	@max-width-default: @max-content-width;
+
+	.content-boundaries(@min-width: @min-width-default, @max-width: @max-width-default) {
+		min-width: @min-width;
+		max-width: @max-width;
+	}
+
+	.center() {
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+	}
+}
+
+// RESPONSIVE LAYOUTS
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
  * You can use the following mixins to easily set up responsive layouts.
  * For grid layouts with non-equal span sizes use incrementing col-[integer] classes and apply sizes to each of these classes:
  *
- * .col-set([column name], [column span width]):
+ * .grid-col-set([column name], [column span width]):
  * Standard mixin to set up a column in a responsive layout
  *
  * To set up layouts with equal width columns you only specify the width in `.grid-col-set-equal`.
@@ -17,7 +41,7 @@
  *       Because else the `nth-child` selectors used in ` .grid-col-set-equal()` for proper clearing would be passed on to all
  *       other viewports/media queries in the layout.
  *
- * .col-clear([columns per line]):
+ * .grid-col-clear([columns per line]):
  * Use this to manually clear every nth column if columns differ in height.
  * This ensures that a grid layout can have only [columns per line] columns on one horizontal grid line.
  *
