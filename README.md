@@ -17,15 +17,15 @@ This project was originally created to collect, standardize and share our contin
 ## What's in it?
 such.less consists in a large part of .less "bundles" that define and structure different "areas" of a project's styles. The full list of components is...
 
-- Structured variables that bundles, setup and styles depend on
+- Libs
+	- [Spartan](https://github.com/SimonHarte/SpartanGrid) grid
+	- Helpers
+	- Wireframing
+- Structured variables that other files depend on
 - Bundles
 	- Fonts
 	- Typography
 	- Layouts (incl. responsive)
-- Libs
-	- Helpers
-	- [Spartan](https://github.com/SimonHarte/SpartanGrid) grid
-	- Wireframing
 - Setup
 - Buttons (optional)
 - Form (optional)
