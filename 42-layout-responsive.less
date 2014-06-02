@@ -8,13 +8,13 @@
  * .col-set([column name], [column span width]):
  * Standard mixin to set up a column in a responsive layout
  *
- * To set up layouts with equal width columns you only specify the width in `.col-set-equal`.
+ * To set up layouts with equal width columns you only specify the width in `.grid-col-set-equal`.
  *
- * .col-set-equal([column span width]):
+ * .grid-col-set-equal([column span width]):
  * Extended mixin to set up equal width columns and properly clear them at the same time
  *
- * Note: Every use of .col-set-equal() must be wrapped in a media query (even for smallest "mobile first" viewport).
- *       Because else the `nth-child` selectors used in ` .col-set-equal()` for proper clearing would be passed on to all
+ * Note: Every use of .grid-col-set-equal() must be wrapped in a media query (even for smallest "mobile first" viewport).
+ *       Because else the `nth-child` selectors used in ` .grid-col-set-equal()` for proper clearing would be passed on to all
  *       other viewports/media queries in the layout.
  *
  * .col-clear([columns per line]):
@@ -34,15 +34,15 @@
 	**/
 
 	@media  @m-small {
-		.col-set-equal(12);
+		.grid-col-set-equal(12);
 	}
 
 	@media @m-medium {
-		.col-set-equal(6);
+		.grid-col-set-equal(6);
 	}
 
 	@media @m-large {
-		.col-set-equal(4);
+		.grid-col-set-equal(4);
 	}
 }
 
@@ -55,11 +55,11 @@
 	**/
 
 	@media @m-medium-down {
-		.col-set-equal(12);
+		.grid-col-set-equal(12);
 	}
 
 	@media @m-large {
-		.col-set-equal(6);
+		.grid-col-set-equal(6);
 	}
 }
 
@@ -72,12 +72,12 @@
 	**/
 
 	@media @m-small {
-		.col-set-equal(12);
+		.grid-col-set-equal(12);
 	}
 
 	@media @m-medium-up {
-		.col-set(col-1, 8);
-		.col-set(col-2, 4);
+		.grid-col-set(col-1, 8);
+		.grid-col-set(col-2, 4);
 	}
 }
 
@@ -90,15 +90,15 @@
 	**/
 
 	@media @m-small {
-		.col-set-equal(12);
+		.grid-col-set-equal(12);
 	}
 
 	@media @m-medium {
-		.col-set-equal(6);
+		.grid-col-set-equal(6);
 	}
 
 	@media @m-large {
-		.col-set-equal(3);
+		.grid-col-set-equal(3);
 	}
 }
 
@@ -111,10 +111,10 @@
 	**/
 
 	@media @m-medium-down {
-		.col-set(col, @grid-max-cols / 5);
+		.grid-col-set(col, @grid-cols / 5);
 	}
 
 	@media @m-large {
-		.col-set(col, @grid-max-cols / 7);
+		.grid-col-set(col, @grid-cols / 7);
 	}
 }
