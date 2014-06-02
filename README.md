@@ -14,25 +14,24 @@ Such less. ![Such shibe](https://github.com/MarcDiethelm/such.less/blob/develop/
 
 This project was originally created to collect, standardize and share our continually evolving CSS tooling. Also to brag about it.
 
-Todo: Maybe really separate default library code and user defined code. Integrate with less unlocks.
-
 ## What's in it?
 such.less consists in a large part of .less "bundles" that define and structure different "areas" of a project's styles. The full list of components is...
 
+- Structured variables that bundles, setup and styles depend on
 - Bundles
 	- Fonts
 	- Typography
-	- Layout [tbd]
-	- Responsive layouts
+	- Layouts (incl. responsive)
 - Libs
 	- Helpers
-	- "responsibly" grid
+	- [Spartan](https://github.com/SimonHarte/SpartanGrid) grid
 	- Wireframing
 - Setup
+- Buttons (optional)
+- Form (optional)
 - Styles (everything else)
-- Structured variables that the Bundles, Setup and Styles depend on
 
-The bundles are described in detail in the Wiki [todo].
+Bundles are described in detail in the Wiki [todo].
 
 ## Getting started
 - Install with (bower? see *TODO* below)
@@ -80,5 +79,5 @@ __Use the included Grunt build:__
 - [x] Mature the file structure and architecture
 - [ ] Plan install mechanisms (bower, npm, component, jam, volo...)
 - [x] Build step
-- [ ] Decide what to do with layout.less
 - [ ] Facilitate integration with external build setups. (grunt plugin?)
+- [ ] Maybe really separate default library code and user defined code
