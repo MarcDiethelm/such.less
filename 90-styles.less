@@ -30,7 +30,7 @@
 	th, ._reset {
 		font-weight: normal;
 	}
-	.col {
+	.g-col {
 		margin-bottom: 1em;
 		
 		> span:extend(.wf-box) {
@@ -50,7 +50,7 @@
 		content: '@{gutter-type}';
 	}
 	._gutter-width-percent:after {
-		@grid-gutter-width-percent: round(percentage(@grid-gutter / (@max-content-width + @grid-gutter)), @grid-precision);
+		@grid-gutter-width-percent: round(percentage(@grid-gutter / (@max-content-width + @grid-gutter)), @spartan-grid-precision);
 		content: '@{grid-gutter-width-percent}';
 	}
 	hr {
