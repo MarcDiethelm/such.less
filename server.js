@@ -23,7 +23,7 @@ http.createServer(function(req, res) {
 	   ,file
 	;
 	
-	if (isFaviconRequest) {
+	if (isFaviconRequest) { // we don't serve no stinking ICO
 		res.statusCode = 404;
 		res.end();
 		return;
@@ -41,7 +41,7 @@ http.createServer(function(req, res) {
 			extension = file.split('.').pop();
 			res.statusCode = 200;
 			res.setHeader("content-type", mime[extension]);
-			fs.createReadStream(file).pipe(res);
+			fs.createReadStream(file).pipe(res); // This is what Node is about.
 			console.log('200', url);
 		}
 		else {
