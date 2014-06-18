@@ -30,23 +30,37 @@
 	border-radius: @arguments;
 }
 
+// opacity for legacy IE as well
+.opacity(@opacity: 1) {
+	@percentage: (@opacity * 100);
+	opacity: @opacity;
+	filter: ~"alpha(opacity=@{percentage})";
+}
+
 // messy placeholder color mixin because placeholder selectors can't be chained
-.placeholder-color(@color: inherit) {
+// reset opacity to 1 and use rgba colours instead so pure colours can be used
+.placeholder-color(@color: inherit, @transparency: 100%) {
+	@c-target: fade(@color, @transparency);
+	
 	::-webkit-input-placeholder {
 		// WebKit browsers
-		color: @color;
+		color: @c-target;
+		opacity: 1;
 	}
 	:-moz-placeholder {
 		// Mozilla Firefox 4 to 18
-		color: @color;
+		color: @c-target;
+		opacity: 1;
 	}
 	::-moz-placeholder {
 		// Mozilla Firefox 19+
-		color: @color;
+		color: @c-target;
+		opacity: 1;
 	}
 	:-ms-input-placeholder {
 		// Internet Explorer 10+
-		color: @color;
+		color: @c-target;
+		opacity: 1;
 	}
 }
 
@@ -110,7 +124,7 @@
 	// overflow: hidden;
 }
 
-// convert hex code to RGBA background color with pure color fallback
+// convert hex code with percentage transparency to RGBA background color with pure color fallback
 .rgba-bg(@color, @transparency) {
 	@rgba: fade(@color, @transparency);
 	
@@ -200,16 +214,32 @@
 
 // http://www.whatwg.org/specs/web-apps/current-work/multipage/editing.html#the-hidden-attribute
 [hidden] {
-	display: none;
+	// extend h5bp hidden class
+	&:extend(.hidden);
 }
 
 // CLASSES
 ////////////////////////////////////
 
 /*
+ * Clearfix: contain floats
+ */
+.cf { // For modern browsers
+	&:before, &:after {
+		content: " "; // The space content is one way to avoid an Opera bug when the contenteditable` attribute is included anywhere else in the document. Otherwise it causes space to appear at the top and bottom of elements that receive the `clearfix` class.
+		display: table; //  The use of `table` rather than `block` is only necessary if using `:before` to contain the top-margins of child elements.
+	}
+	&:after {
+		clear: both;
+	}
+// For IE 6/7 only
+	*zoom: 1; // trigger hasLayout and contain floats.
+}
+
+/*
  * Hide only visually, but have it available for screenreaders: h5bp.com/v
  */
-.vis-hidden {
+.vh {
 	border: 0;
 	clip: rect(0 0 0 0);
 	height: 1px;
@@ -234,12 +264,15 @@
 	}
 }
 
-.text-hide {
-	font: ~"0/0" a;
-	color: transparent;
-	text-shadow: none;
-	background-color: transparent;
+/*
+ * Hide only text
+ */
+.th {
 	border: 0;
+	font: 0/0 a;
+	text-shadow: none;
+	color: transparent;
+	background-color: transparent;
 	text-rendering: auto; // prevent webkit ghost text if text rendering is set to optimizeLegibility
 }
 
@@ -277,19 +310,4 @@ a.box {
 	-ms-text-overflow: ellipsis;
 	-o-text-overflow: ellipsis;
 	text-overflow: ellipsis;
-}
-
-/*
- * Clearfix: contain floats
- */
-.cf { // For modern browsers
-	&:before, &:after {
-		content: " "; // The space content is one way to avoid an Opera bug when the contenteditable` attribute is included anywhere else in the document. Otherwise it causes space to appear at the top and bottom of elements that receive the `clearfix` class.
-		display: table; //  The use of `table` rather than `block` is only necessary if using `:before` to contain the top-margins of child elements.
-	}
-	&:after {
-		clear: both;
-	}
-// For IE 6/7 only
-	*zoom: 1; // trigger hasLayout and contain floats.
 }
