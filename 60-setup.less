@@ -30,28 +30,35 @@ body {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 .title-page {
-	#type > #title > .style('page'; inherit);
+	#type > #title > .style('default');
+	
+	@media @m-medium-up {
+		#type > #title > .style('page');
+	}
 }
 
 .title {
-	#type > #title > .style('default'; inherit);
+	#type > #title > .style('default');
 }
 
 .copy {
-	#type > #copy > .style('default'; inherit);
+	#type > #copy > .style('small');
+	
+	@media @m-medium-up {
+		#type > #copy > .style('default');
+	}
 }
 
 .small {
-	#type > #copy > .style('small'; inherit);
+	#type > #copy > .style('small');
 }
 
 // LINKS
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// Base link style is in typography file. Apply and define any variations and exceptions here...
 a:link,
 a:visited,
 a:hover,
 a:active {
-	#type > #link > .style('default'; @color-link);
+	#type > #link > .style('default', @color-link);
 }

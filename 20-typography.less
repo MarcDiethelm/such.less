@@ -5,11 +5,10 @@
 // - 00-variables.less
 
 #type {
+	// set default variables, overwrite in sub bundles if needed
 	@font-family    : @font-default;
-	@font-size      : @font-size-default;
-	@line-height    : @line-height-default;
 	@font-weight    : normal;
-	@color          : @color-copy;
+	@color          : inherit;
 
 	// optimised text rendering
 	.rendering(@_) {
@@ -18,11 +17,8 @@
 	}
 
 	#title {
-		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		@font-family: @font-title;
-		//@font-weight: bold;
-		@color: gray;
-		@line-height: 22px;
 
 		// applies to all below //
 		.style(@_, @color: @color) {
@@ -33,28 +29,19 @@
 		}
 
 		.style('default'; ...) {
-			font-size: medium;
-			line-height: @line-height;
-
-			@media @m-medium-up {
-				font-size: large;
-			}
+			font-size: 18px;
+			line-height: 20px;
 		}
 
 		.style('page'; ...) {
-			font-size: large;
-			line-height: 26px; // old browsers
-			line-height: 2rem;
-
-			@media @m-medium-up {
-				font-size: x-large;
-			}
+			font-size: 28px;
+			line-height: 34px;
 		}
 
 	}
 
 	#copy {
-		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 		// applied to all below //
 		.style(@_, @color: @color) {
@@ -63,14 +50,14 @@
 			font-weight: @font-weight;
 		}
 
-		.style('default'; ...) {
-			font-size: @font-size;
-			line-height: @line-height;
+		.style('default', ...) {
+			font-size: 13px;
+			line-height: 17px;
 		}
 
-		.style('small'; ...) {
-			font-size: x-small;
-			line-height: @line-height;
+		.style('small', ...) {
+			font-size: 11px;
+			line-height: 14px;
 		}
 
 	}
@@ -84,36 +71,10 @@
 			text-decoration: none;
 		}
 
-		.style('default'; ...) {
+		.style('default', ...) {
 			&:hover {
 				text-decoration: underline;
 			}
 		}
 	}
 }
-
-/**
-
-Usage:
-	As HTML class
-	<h6 class="title-page">Lorem</h6>
-
-	In style sheet
-	.mod-example {
-
-		// extend
-		.header .title:extend(title-claim); // or
-		.header .title { &.extend(.title-claim) };
-
-		// mixin
-		// default claim title
-		.header .title { .title-claim() };
-
-		// mixin
-		// local variation: pink, normal weight
-		#typo > #title > .style('page', pink);
-		// override styles for exceptions in design
-		font-weight: normal; // blame the designer
-	}
-	
-**/
