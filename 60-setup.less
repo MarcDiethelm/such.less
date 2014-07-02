@@ -3,20 +3,27 @@
 // - lib/wireframe.less
 
 html {
-	#type > #copy > .style('default'; @color-copy);
-	#type > .rendering('antialiased');
-	.visual-viewports(); // Remove for production
-
-	padding: 0 1em;
-	@media @m-medium-up {
-		padding: 0 2em;
-	}
+	#type > .rendering('optimised');
+	font-size: 62.5%; // reset to 10px for linear rem usage
+	overflow-x: hidden;
+	overflow-y: scroll;
 }
 
 body {
-	#layout > .content-boundaries(0, @max-content-width);
+	// set default font style and color for the page
+	#type > #copy > .style('default', @color-copy);
+	// set min-/max-width and center page
+	#layout > .content-boundaries(0, (@max-content-width + (@h-spacing*2))); // padding on both sides
 	#layout > .center();
+	// indicate current viewport, remove in production
+	.visual-viewports();
+	overflow: hidden;
 	background: @color-bg-body;
+	padding: 0 (@h-spacing*.5);
+	
+	@media @m-medium-up {
+		padding: 0 @h-spacing;
+	}
 }
 
 // GRID
