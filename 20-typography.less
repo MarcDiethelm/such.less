@@ -42,7 +42,6 @@
 
 	#copy {
 		////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 		// applied to all below //
 		.style(@_, @color: @color) {
 			color: @color;
@@ -64,7 +63,6 @@
 
 	#link {
 		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 		// applies to all below //
 		.style(@_, @color: @color) {
 			color: @color;
@@ -74,6 +72,13 @@
 		.style('default', ...) {
 			&:hover {
 				text-decoration: underline;
+			}
+		}
+
+		.style('hilited', ...) {
+			&:hover {
+				text-decoration: none;
+				color: hotpink;
 			}
 		}
 	}
