@@ -14,17 +14,10 @@
 		pointer-events: none;
 	}
 
-	// Todo: can we generate this with less?
 	&:before {
 		top: 45px;
 		background-color: hotpink;
 		border: 1px solid mediumvioletred;
-	}
-
-	&:after {
-		top: 80px;
-		background-color: turquoise;
-		border: 1px solid teal;
 	}
 
 	@media @m-small {
@@ -33,7 +26,7 @@
 		}
 	}
 
-	@media @m-medium-up {
+	@media @m-medium {
 		&:before {
 			content: 'medium';
 		}
@@ -42,24 +35,6 @@
 	@media @m-large {
 		&:before {
 			content: 'large';
-		}
-	}
-
-	@media @co-1-col {
-		&:after {
-			content: '1 col';
-		}
-	}
-
-	@media @co-2-col {
-		&:after {
-			content: '2 cols';
-		}
-	}
-
-	@media @co-3-col {
-		&:after {
-			content: '3 cols';
 		}
 	}
 }
