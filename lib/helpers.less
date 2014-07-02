@@ -23,6 +23,14 @@
 	transition: @arguments;
 }
 
+// Background sizing
+.background-size(@size: cover) {
+	-webkit-background-size: @size;
+	-moz-background-size: @size;
+	-o-background-size: @size;
+	background-size: @size;
+}
+
 // take every amount of arguments and use them as-is to make shorthands possible
 .border-radius(...) {
 	-webkit-border-radius: @arguments;
@@ -30,15 +38,24 @@
 	border-radius: @arguments;
 }
 
-// opacity for legacy IE as well
+// Opacity
 .opacity(@opacity: 1) {
 	@percentage: (@opacity * 100);
 	opacity: @opacity;
 	filter: ~"alpha(opacity=@{percentage})";
 }
 
-// messy placeholder color mixin because placeholder selectors can't be chained
-// reset opacity to 1 and use rgba colours instead so pure colours can be used
+// mixin to easily style user selection
+//.user-selection(@rules) {
+//	&::selection {
+//		@rules();
+//	}
+//	&::-moz-selection {
+//		@rules();
+//	}
+//}
+
+// messy placeholder color mixin because placeholder selectors cannot be chained
 .placeholder-color(@color: inherit, @transparency: 100%) {
 	@c-target: fade(@color, @transparency);
 	
@@ -67,26 +84,26 @@
 // GRADIENTS
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-.linear-gradient('vertical', @colorStart: #eee, @colorEnd: #ccc, @start: 0%, @end: 100%) {
-	background: mix(@colorStart, @colorEnd); /* Old browsers */
-	background: -moz-linear-gradient(top, @colorStart @start, @colorEnd @end); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(@start, @colorStart), color-stop(@end, @colorEnd)); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(top, @colorStart @start, @colorEnd @end); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(top, @colorStart @start, @colorEnd @end); /* Opera 11.10+ */
-	background: -ms-linear-gradient(top, @colorStart @start, @colorEnd @end); /* IE10+ */
-	background: linear-gradient(to bottom, @colorStart @start, @colorEnd @end); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='@{colorStart}', endColorstr='@{colorEnd}', GradientType=0); /* IE6-9 */
+.linear-gradient('vertical', @color-start: #eee, @color-end: #ccc, @start: 0%, @end: 100%) {
+	background: mix(@color-start, @color-end); /* Old browsers */
+	background: -moz-linear-gradient(top, @color-start @start, @color-end @end); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(@start, @color-start), color-stop(@end, @color-end)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, @color-start @start, @color-end @end); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, @color-start @start, @color-end @end); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, @color-start @start, @color-end @end); /* IE10+ */
+	background: linear-gradient(to bottom, @color-start @start, @color-end @end); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='@{color-start}', endColorstr='@{color-end}', GradientType=0); /* IE6-9 */
 }
 
-.linear-gradient('horizontal', @colorStart: #eee, @colorEnd: #ccc, @start: 0%, @end: 100%) {
-	background: mix(@colorStart, @colorEnd); /* Old browsers */
-	background: -moz-linear-gradient(left, @colorStart @start, @colorEnd @end); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, right top, color-stop(@start, @colorStart), color-stop(@end, @colorEnd)); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(left, @colorStart @start, @colorEnd @end); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(left, @colorStart @start, @colorEnd @end); /* Opera 11.10+ */
-	background: -ms-linear-gradient(left, @colorStart @start, @colorEnd @end); /* IE10+ */
-	background: linear-gradient(to right, @colorStart @start, @colorEnd @end); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='@{colorStart}', endColorstr='@{colorEnd}', GradientType=1); /* IE6-9 */
+.linear-gradient('horizontal', @color-start: #eee, @color-end: #ccc, @start: 0%, @end: 100%) {
+	background: mix(@color-start, @color-end); /* Old browsers */
+	background: -moz-linear-gradient(left, @color-start @start, @color-end @end); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, right top, color-stop(@start, @color-start), color-stop(@end, @color-end)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(left, @color-start @start, @color-end @end); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(left, @color-start @start, @color-end @end); /* Opera 11.10+ */
+	background: -ms-linear-gradient(left, @color-start @start, @color-end @end); /* IE10+ */
+	background: linear-gradient(to right, @color-start @start, @color-end @end); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='@{color-start}', endColorstr='@{color-end}', GradientType=1); /* IE6-9 */
 }
 
 // BOX SHADOW
@@ -98,10 +115,9 @@
 }
 
 .box-shadow(inset, @x: 0, @y: 0, @blur: 5px, @spread: 0, @color: #ccc) {
-	// cannot use @arguments here!
-	-webkit-box-shadow: inset @x @y @blur @spread @color;
-	-moz-box-shadow: inset @x @y @blur @spread @color;
-	box-shadow: inset @x @y @blur @spread @color;
+	-webkit-box-shadow: inset @arguments;
+	-moz-box-shadow: inset @arguments;
+	box-shadow: inset @arguments;
 }
 
 .box-shadow(none) {
@@ -119,15 +135,15 @@
 	margin-right: -@width;
 	padding-left: @width;
 	padding-right: @width;
-	// bg-beyond with .clearfixed rows pushes content down. fix with...
+	// bg-beyond with clearfixed rows pushes content down. fix with...
 	// clear: both; // or
 	// overflow: hidden;
 }
 
-// convert hex code with percentage transparency to RGBA background color with pure color fallback
+// convert hex code to RGBA background color with pure color fallback
 .rgba-bg(@color, @transparency) {
 	@rgba: fade(@color, @transparency);
-	
+
 	background: @color;
 	background: @rgba;
 }
@@ -137,7 +153,7 @@
  *
  * params .triangle(1, 2, 3, 4):
  * 1. Direction in which the triangle peak should face.
- * 2. Thickness of the triangle (e.g. half a diagonal line if you make a square out of two triangles).
+ * 2. Thickness of the triangle (e.g. long side to peak).
  * 3. Triangle color, can be inherited from parent (default).
  * 4. Optional parameter to center the triangle on the given side relative to its parent.
  *    This needs the parent to have position: relative.
@@ -213,8 +229,8 @@
 ////////////////////////////////////
 
 // http://www.whatwg.org/specs/web-apps/current-work/multipage/editing.html#the-hidden-attribute
+// use h5bp .hidden styles for this
 [hidden] {
-	// extend h5bp hidden class
 	&:extend(.hidden);
 }
 
@@ -224,7 +240,8 @@
 /*
  * Clearfix: contain floats
  */
-.cf { // For modern browsers
+.cf {
+	// For modern browsers
 	&:before, &:after {
 		content: " "; // The space content is one way to avoid an Opera bug when the contenteditable` attribute is included anywhere else in the document. Otherwise it causes space to appear at the top and bottom of elements that receive the `clearfix` class.
 		display: table; //  The use of `table` rather than `block` is only necessary if using `:before` to contain the top-margins of child elements.
@@ -232,13 +249,14 @@
 	&:after {
 		clear: both;
 	}
-// For IE 6/7 only
+	// For IE 6/7 only
 	*zoom: 1; // trigger hasLayout and contain floats.
 }
 
 /*
- * Hide only visually, but have it available for screenreaders: h5bp.com/v
- */
+* Hide only visually, but have it available for screen readers: h5bp.com/v
+*/
+
 .vh {
 	border: 0;
 	clip: rect(0 0 0 0);
@@ -249,10 +267,11 @@
 	position: absolute;
 	width: 1px;
 
-/*
- * Extends the .vis-hidden class to allow the element to be focusable
- * when navigated to via the keyboard: h5bp.com/p
- */
+	/*
+	* Extends the .vh class to allow the element to be focusable
+	* when navigated to via the keyboard: h5bp.com/p
+	*/
+
 	&.focusable:active,
 	&.focusable:focus {
 		clip: auto;
