@@ -1,5 +1,13 @@
-// CSS3 BROWSER PREFIXERS
+/**
+ * "such.less" CSS boilerplate framework
+ * helpers.less
+ * https://github.com/MarcDiethelm/such.less
+ * License: MIT
+ * Copyright 2014 Marc Diethelm, Simon Harte
+ */
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// CSS3 BROWSER PREFIXERS
 
 .box-sizing(@boundaries: border-box) {
 	-webkit-box-sizing: @boundaries;
@@ -81,8 +89,8 @@
 	}
 }
 
-// GRADIENTS
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// GRADIENTS
 
 .linear-gradient('vertical', @color-start: #eee, @color-end: #ccc, @start: 0%, @end: 100%) {
 	background: mix(@color-start, @color-end); /* Old browsers */
@@ -106,8 +114,8 @@
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='@{color-start}', endColorstr='@{color-end}', GradientType=1); /* IE6-9 */
 }
 
-// BOX SHADOW
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// BOX SHADOW
 .box-shadow(@x: 0, @y: 0, @blur: 5px, @spread: 0, @color: #ccc) {
 	-webkit-box-shadow: @arguments;
 	-moz-box-shadow: @arguments;
@@ -126,8 +134,8 @@
 	box-shadow: none;
 }
 
-// STYLE HELPERS
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// STYLE HELPERS
 
 // extend a background horizontally to "infinity and beyond" without altering the elements content boundaries
 .bg-beyond(@width: 500%) {
@@ -225,8 +233,8 @@
 	margin-top: -@size;
 }
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // POLYFILLS
-////////////////////////////////////
 
 // http://www.whatwg.org/specs/web-apps/current-work/multipage/editing.html#the-hidden-attribute
 // use h5bp .hidden styles for this
@@ -234,8 +242,8 @@
 	&:extend(.hidden);
 }
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // CLASSES
-////////////////////////////////////
 
 /*
  * Clearfix: contain floats
