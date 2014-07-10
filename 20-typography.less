@@ -24,70 +24,90 @@
 		-webkit-font-smoothing: antialiased;
 	}
 
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	#title {
-		////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		@font-family: @font-title;
 
-		// applies to all below //
-		.style(@_, @color: @color) {
-			color: @color;
+		.style() {
 			font-family: @font-family;
-			font-weight: @font-weight !important; // (!important): Prevent faux bold / double-bold styling for webfonts
-			font-style: normal !important; // (!important): Prevent faux italic / double-italic styling for webfonts
+			font-weight: @font-weight;
+			color: @color;
+		}
+		
+		// applies to all below //
+		.size(@_) {
+			&:extend(.class-title);
 		}
 
-		.style('default'; ...) {
+		.size('default') {
 			font-size: 18px;
 			line-height: 20px;
 		}
 
-		.style('page'; ...) {
+		.size('page') {
 			font-size: 28px;
 			line-height: 34px;
 		}
 
 	}
 
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	#copy {
-		////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		// applied to all below //
-		.style(@_, @color: @color) {
-			color: @color;
+		.style() {
 			font-family: @font-family;
 			font-weight: @font-weight;
+			color: @color;
+		}
+		
+		// applied to all below //
+		.size(@_) {
+			&:extend(.class-copy);
 		}
 
-		.style('default', ...) {
+		.size('default', ...) {
 			font-size: 13px;
 			line-height: 17px;
 		}
 
-		.style('small', ...) {
+		.size('small', ...) {
 			font-size: 11px;
 			line-height: 14px;
 		}
 
 	}
 
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	#link {
-		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		@color: @color-link;
+		
 		// applies to all below //
-		.style(@_, @color: @color) {
+		.style(@_) {
 			color: @color;
 			text-decoration: none;
 		}
 
-		.style('default', ...) {
+		.style('default') {
 			&:hover {
 				text-decoration: underline;
 			}
 		}
 
-		.style('hilited', ...) {
+		.style('hilited') {
 			&:hover {
 				text-decoration: none;
 				color: hotpink;
 			}
 		}
 	}
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// BASE TYPO STYLE CLASSES TO EXTEND
+
+.class-title {
+	#type > #title > .style;
+}
+
+.class-copy {
+	#type > #copy > .style;
 }
