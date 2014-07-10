@@ -1,8 +1,16 @@
+/**
+ * "Spartan" LessCSS Grid System
+ * spartan.less
+ * https://github.com/SimonHarte/SpartanGrid/blob/master/spartan.less
+ * License: MIT
+ * Copyright 2014 Simon Harte
+ */
+
 // GRID CALCULATIONS
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Note: We use !important statements for grid layout critical styles.
-//       Like this you can define for example margin shorthands on a columns without affecting the grid indentation.
+//       Like this you can define for example margin and padding shorthands without affecting the grid.
 
 .spartan-grid() {
 	// multiple mixins switch according to passed types
@@ -11,10 +19,11 @@
 	.spartan-create('fluid', 'fluid', @fixed-width, @fixed-gutter, @cols) {
 		@spartan-width: 100%;
 
-		// fluid gutter is calculated relatively to the static gutter in fixed grid width
-		@spartan-row-gutter: round(percentage(@fixed-gutter / @fixed-width), @spartan-grid-precision);
-		// percentage column gutter has to be slightly bigger than row indent because row indent changes the container width
-		@spartan-col-gutter: round(percentage(@fixed-gutter / (@fixed-width + @fixed-gutter)), @spartan-grid-precision);
+		// take negative row indent into account
+		@spartan-row-gutter: round(percentage(@fixed-gutter / @fixed-width), 3);
+		
+		// take negative row indent into account
+		@spartan-col-gutter: round(percentage(@fixed-gutter / (@fixed-width + @fixed-gutter)), 3);
 
 		// calculate the width of one grid column
 		@spartan-one-col: (@spartan-width / @cols);
@@ -49,35 +58,31 @@
 	// unlock grid mixins with modified variables
 	.spartan-grid-mixins(@width, @row-gutter, @col-gutter, @one-col) {
 		.spartan-span-width(@num) {
-			width: round((@one-col * @num), @spartan-grid-precision);
+			width: round((@one-col * @num), 4);
 		}
 
 		// indent grid columns either way with these mixins
-		.spartan-indent(@num: 0) when (@num >= 0) {
-			margin-left: round((@one-col * @num), @spartan-grid-precision);
+		.spartan-indent(@num: 0) {
+			margin-left: round((@one-col * @num), 3);
 		}
 
-		.spartan-indent(@num: 0) when (@num < 0) {
-			margin-left: -round((@one-col * @num), @spartan-grid-precision);
+		// used only on .g-col for uniquely applied gutter
+		.spartan-gutter(@num: 0) when (@num >= 0) {
+			padding-left: @col-gutter;
 		}
 
-		// used only on .col for uniquely applied gutter
-		.spartan-col-indent(@num: 0) {
-			padding-left: @col-gutter !important;
-		}
-
-		// used only on .row for proper negative indents
-		.spartan-row-indent(@num: 0) {
-			margin-left: -@col-gutter;
+		// used only on .g-row for proper negative indents
+		.spartan-gutter(@num: 0) when (@num < 0) {
+			margin-left: -@row-gutter;
 		}
 
 		// visually manipulate grid column order with these mixins
 		.spartan-push(@num) {
-			left: round((@one-col * @num), @spartan-grid-precision);
+			left: round((@one-col * @num), 3);
 		}
 
 		.spartan-pull(@num) {
-			right: round((@one-col * @num), @spartan-grid-precision);
+			right: round((@one-col * @num), 3);
 		}
 	}
 
@@ -139,14 +144,25 @@
 	.spartan-pull(@num);
 }
 
+// convenience mixin for push and pull
+// also for 4th param to .grid-col-set()
+.grid-reorder(@num) when (@num >= 0) {
+	.grid-push(@num);
+}
+
+.grid-reorder(@num) when (@num < 0) {
+	.grid-pull(abs(@num));
+}
+
 // LAYOUT SETUP HELPERS
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // You can use the following mixins to easily set up responsive layouts.
 // For grid layouts with non-equal span sizes use incrementing col-[integer] classes and apply sizes to each of these classes.
 //
-// .col-set([colum name], [column span width], [offset]):
+// .col-set([colum name], [column span width], [offset], [order]):
 // Standard mixin to set up a column in a responsive layout.
+// You can optionally pass an offset and reorder parameter to apply indentation or use push and pull on a column.
 //
 // To set up layouts with equal width columns you only specify the width in `.col-set-equal`.
 //
@@ -161,14 +177,14 @@
 // Use this to manually clear every nth column if columns differ in height.
 // This ensures that a grid layout can have only [colums per line] columns on one horizontal grid line.
 
-.grid-col-clear(@columns) when (isnumber(@columns)) {
+.grid-col-clear(@columns) when (@columns >= 0) {
 	> .@{spartan-namespace}row > .@{spartan-namespace}col:nth-child(@{columns}n+1),
 	> .@{spartan-namespace}col:nth-child(@{columns}n+1) {
 		clear: left;
 	}
 }
 
-.grid-col-set(@col-name; @col-span) {
+.grid-col-set(@col-name, @col-span) when (@col-span >= 0) {
 	// apply styles to child columns directly or to columns within child rows
 	> .@{spartan-namespace}row > .@{spartan-namespace}@{col-name},
 	> .@{spartan-namespace}@{col-name} {
@@ -176,7 +192,7 @@
 	}
 }
 
-.grid-col-set(@col-name; @col-span; @offset) {
+.grid-col-set(@col-name, @col-span, @offset) when (@col-span >= 0) {
 	// apply styles to child columns directly or to columns within child rows
 	> .@{spartan-namespace}row > .@{spartan-namespace}@{col-name},
 	> .@{spartan-namespace}@{col-name} {
@@ -185,11 +201,32 @@
 	}
 }
 
-.grid-col-set-equal(@col-span) when (isnumber(@col-span)) {
+// only apply reordering when offset is zero
+.grid-col-set(@col-name, @col-span, @offset, @reorder) when (@col-span >= 0) and (@offset = 0) {
+	// apply styles to child columns directly or to columns within child rows
+	> .@{spartan-namespace}row > .@{spartan-namespace}@{col-name},
+	> .@{spartan-namespace}@{col-name} {
+		.grid-span(@col-span);
+		.grid-reorder(@reorder);
+	}
+}
+
+// apply offset and reorder if offset is not zero
+.grid-col-set(@col-name, @col-span, @offset, @reorder) when (@col-span >= 0) and (abs(@offset) > 0) {
+	// apply styles to child columns directly or to columns within child rows
+	> .@{spartan-namespace}row > .@{spartan-namespace}@{col-name},
+	> .@{spartan-namespace}@{col-name} {
+		.grid-span(@col-span);
+		.grid-offset(@offset);
+		.grid-reorder(@reorder);
+	}
+}
+
+.grid-col-set-equal(@col-span) when (@col-span >= 0) {
 	@spartan-clear: @spartan-grid-max-cols / @col-span;
 
 	// use default col-set mixin to generate selector
-	.grid-col-set(col; @col-span);
+	.grid-col-set(col, @col-span);
 
 	// with equal columns, clear every nth element for proper alignment
 	.grid-col-clear(@spartan-clear);
@@ -251,13 +288,6 @@
 		.grid-box-sizing();
 		float: left;
 		margin-left: 0 !important;
-
-		// spacer class for the rare occasion we have an "empty" column in a responsive grid layout
-		// where the use of .offset is not possible because of realignment of columns
-		&.@{spartan-namespace}spacer {
-			min-height: 1px;
-			visibility: hidden;
-		}
 	}
 }
 
@@ -265,12 +295,12 @@
 	.grid-gutter() {
 		// base row and gutter styles must be set anew
 		.@{spartan-namespace}row {
-			.spartan-row-indent(0) !important;
+			.spartan-gutter(-1) !important;
 		}
 	
 		.@{spartan-namespace}col {
 			// one gutter indent for each column
-			.spartan-col-indent(0) !important;
+			.spartan-gutter(1) !important;
 			// columns should per default span the whole width if none is set
 			.grid-span(@spartan-grid-max-cols);
 		}
@@ -282,8 +312,6 @@
 
 	@spartan-grid-type: extract(@config, 1);
 	@spartan-grid-gutter-type: extract(@config, 4);
-
-	@spartan-grid-precision: 4;
 	
 	// set up grid styles depending on an included config
 	.spartan-grid();

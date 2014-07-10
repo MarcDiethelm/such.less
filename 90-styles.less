@@ -55,7 +55,7 @@
 		content: '@{gutter-type}';
 	}
 	._gutter-width-percent:after {
-		@grid-gutter-width-percent: round(percentage(@grid-gutter / (@max-content-width + @grid-gutter)), @spartan-grid-precision);
+		@grid-gutter-width-percent: round(percentage(@grid-gutter / (@max-content-width + @grid-gutter)), 3);
 		content: '@{grid-gutter-width-percent}';
 	}
 	hr {
