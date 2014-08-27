@@ -161,7 +161,7 @@
  *
  * params .triangle(1, 2, 3, 4):
  * 1. Direction in which the triangle peak should face.
- * 2. Thickness of the triangle (e.g. long side to peak).
+ * 2. Thickness of the triangle (e.g. width of long side to peak).
  * 3. Triangle color, can be inherited from parent (default).
  * 4. Optional parameter to center the triangle on the given side relative to its parent.
  *    This needs the parent to have position: relative.
@@ -177,7 +177,7 @@
  * }
  **/
 
-.triangle(@_, @size, @color: inherit, ...) {
+.triangle(@_, @size, ...) {
 	content: ' ';
 	display: inline-block;
 	width: 0px;
@@ -189,7 +189,7 @@
 	position: absolute;
 }
 
-.triangle('up', @size, @color, ...) {
+.triangle('up', @size, @color: inherit, ...) {
 	border-bottom-color: @color;
 	border-top: none;
 }
@@ -200,7 +200,7 @@
 	margin-left: -@size;
 }
 
-.triangle('right', @size, @color, ...) {
+.triangle('right', @size, @color: inherit, ...) {
 	border-left-color: @color;
 	border-right: none;
 }
@@ -211,7 +211,7 @@
 	margin-top: -@size;
 }
 
-.triangle('down', @size, @color, ...) {
+.triangle('down', @size, @color: inherit, ...) {
 	border-top-color: @color;
 	border-bottom: none;
 }
@@ -222,7 +222,7 @@
 	margin-left: -@size;
 }
 
-.triangle('left', @size, @color, ...) {
+.triangle('left', @size, @color: inherit, ...) {
 	border-right-color: @color;
 	border-left: none;
 }
