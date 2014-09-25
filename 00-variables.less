@@ -41,23 +41,26 @@
 @v-spacing          : 15px;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// BREAKPOINTS and MEDIAQUERIES
+// BREAKPOINTS and MEDIA QUERIES
 
+// Breakpoints
 @bp-1: 40em;
 @bp-2: 65em;
 
-@m-small-max: @bp-1;
-@m-medium-min: (@bp-1 + 0.01);
-@m-medium-max: @bp-2;
-@m-large-min: (@bp-2 + 0.01);
+// Viewport Boundaries
+@vp-small-max: @bp-1;
+@vp-medium-min: (@bp-1 + 0.01);
+@vp-medium-max: @bp-2;
+@vp-large-min: (@bp-2 + 0.01);
 
-@m-small: ~"(max-width: @{m-small-max})";
-@m-medium: ~"(min-width: @{m-medium-min}) and (max-width: @{m-medium-max})";
-@m-medium-down: ~"(max-width: @{m-medium-max})";
-@m-medium-up: ~"(min-width: @{m-medium-min})";
-@m-large: ~"(min-width: @{m-large-min})";
+// Media Queries
+@m-small: ~"(max-width: @{vp-small-max})";
+@m-medium: ~"(min-width: @{vp-medium-min}) and (max-width: @{vp-medium-max})";
+@m-medium-down: ~"(max-width: @{vp-medium-max})";
+@m-medium-up: ~"(min-width: @{vp-medium-min})";
+@m-large: ~"(min-width: @{vp-large-min})";
 
-// Retina Resolution
+// High DPI ("Retina") Query
 @px-ratio: 1.5;
 @default-dpi: 96;
 @hdpi: @default-dpi * @px-ratio;
