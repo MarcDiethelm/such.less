@@ -88,10 +88,10 @@
 	* large: 8/4
 	**/
 	@third: @grid-cols/3;
-	
+
 	@media @m-medium-up {
-		.grid-col-set(col-1, @third*2);
-		.grid-col-set(col-2, @third);
+		.grid-col-set('col-1', @third*2);
+		.grid-col-set('col-2', @third);
 	}
 }
 
@@ -119,14 +119,14 @@
 	**/
 
 	@media @m-small {
-		.grid-col-set(col, @grid-cols/5);
+		.grid-col-set('col', @grid-cols/5);
 	}
 
 	@media @m-medium {
-		.grid-col-set(col, @grid-cols/7);
+		.grid-col-set('col', @grid-cols/7);
 	}
 
 	@media @m-large {
-		.grid-col-set(col, @grid-cols/9);
+		.grid-col-set('col', @grid-cols/9);
 	}
 }
