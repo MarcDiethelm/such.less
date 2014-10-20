@@ -1,7 +1,7 @@
 /**
  * "Spartan" LessCSS Grid System
- * spartan.less
- * https://github.com/SimonHarte/SpartanGrid/blob/master/spartan.less
+ * version: 3.4.0
+ * https://github.com/SimonHarte/SpartanGrid/blob/develop/spartan.less
  * License: MIT
  * Copyright 2014 Simon Harte
  */
@@ -14,14 +14,13 @@
 
 .spartan-grid() {
 	// multiple mixins switch according to passed types
-
 	// mixin for standard fluid grid with fluid gutter
 	.spartan-create('fluid', 'fluid', @fixed-width, @fixed-gutter, @cols) {
 		@spartan-width: 100%;
 
 		// take negative row indent into account
 		@spartan-row-gutter: percentage(@fixed-gutter / @fixed-width);
-		
+
 		// take negative row indent into account
 		@spartan-col-gutter: percentage(@fixed-gutter / (@fixed-width + @fixed-gutter));
 
@@ -29,7 +28,7 @@
 		@spartan-one-col: (@spartan-width / @cols);
 
 		// implement grid mixins with type dependent variables
-		.spartan-grid > .spartan-grid-mixins(@spartan-width, @spartan-row-gutter, @spartan-col-gutter, @spartan-one-col);
+		.spartan-grid-mixins(@spartan-row-gutter, @spartan-col-gutter, @spartan-one-col);
 	}
 
 	// mixin for fluid grid and fixed gutter
@@ -38,27 +37,25 @@
 
 		// calculate the width of one grid column
 		@spartan-one-col: (@spartan-width / @cols);
-		
+
 		// implement grid mixins with type dependent variables
-		.spartan-grid > .spartan-grid-mixins(@spartan-width, @fixed-gutter, @fixed-gutter, @spartan-one-col);
+		.spartan-grid-mixins(@fixed-gutter, @fixed-gutter, @spartan-one-col);
 	}
 
 	// only one mixin for fixed grid needed because we cannot make fluid gutters in static grid
 	.spartan-create('fixed', @gutter-type, @fixed-width, @fixed-gutter, @cols) {
-		@spartan-width: @fixed-width;
-		
 		// calculate the width of one grid column
 		@spartan-one-col: ((@fixed-width + @fixed-gutter) / @cols);
 
 		// implement grid mixins with type dependent variables
-		.spartan-grid > .spartan-grid-mixins(@spartan-width, @fixed-gutter, @fixed-gutter, @spartan-one-col);
+		.spartan-grid-mixins(@fixed-gutter, @fixed-gutter, @spartan-one-col);
 	}
 
 	// call switch mixin to calculate variables depending on grid configuration
-	.spartan-grid > .spartan-create(@spartan-grid-type, @spartan-grid-gutter-type, @spartan-grid-fixed-width, @spartan-grid-fixed-gutter, @spartan-grid-max-cols);
+	.spartan-create(@spartan-grid-type, @spartan-grid-gutter-type, @spartan-grid-fixed-width, @spartan-grid-fixed-gutter, @spartan-grid-max-cols);
 
 	// unlock grid mixins with modified variables
-	.spartan-grid-mixins(@width, @row-gutter, @col-gutter, @one-col) {
+	.spartan-grid-mixins(@row-gutter, @col-gutter, @one-col) {
 		.spartan-span-width(@num) {
 			width: ceil((@one-col * @num) * pow(10, @spartan-precision)) / pow(10, @spartan-precision);
 		}
@@ -92,16 +89,15 @@
 	.spartan-loop (@index, @class: item, @mixin: '') when (@index > 0) {
 		// create the actual css selector
 		.@{class}-@{index} {
-			.spartan-grid > .spartan-apply(@mixin, @index);
+			.spartan-apply(@mixin, @index);
 		}
 
 		// next iteration
-		.spartan-grid > .spartan-loop(@index - 1, @class, @mixin);
+		.spartan-loop(@index - 1, @class, @mixin);
 	}
 
 	// GRID CLASS GENERATOR
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 	// mixins to call inside less loop
 	// use standardized global mixins - because we have them...
 
@@ -186,15 +182,17 @@
 }
 
 .grid-col-set(@col-name, @col-span) when (@col-span >= 0) {
-	// apply styles to child columns directly or to columns within child rows
-	> .@{spartan-namespace}@{col-name} {
+	@column-fullname: ~'.@{spartan-namespace}@{col-name}';
+
+	> @{column-fullname} {
 		.grid-span(@col-span);
 	}
 }
 
 .grid-col-set(@col-name, @col-span, @offset) when (@col-span >= 0) {
-	// apply styles to child columns directly or to columns within child rows
-	> .@{spartan-namespace}@{col-name} {
+	@column-fullname: ~'.@{spartan-namespace}@{col-name}';
+
+	> @{column-fullname} {
 		.grid-span(@col-span);
 		.grid-offset(@offset);
 	}
@@ -202,8 +200,9 @@
 
 // only apply reordering when offset is zero
 .grid-col-set(@col-name, @col-span, @offset, @reorder) when (@col-span >= 0) and (@offset = 0) {
-	// apply styles to child columns directly or to columns within child rows
-	> .@{spartan-namespace}@{col-name} {
+	@column-fullname: ~'.@{spartan-namespace}@{col-name}';
+
+	> @{column-fullname} {
 		.grid-span(@col-span);
 		.grid-reorder(@reorder);
 	}
@@ -211,8 +210,9 @@
 
 // apply offset and reorder if offset is not zero
 .grid-col-set(@col-name, @col-span, @offset, @reorder) when (@col-span >= 0) and (abs(@offset) > 0) {
-	// apply styles to child columns directly or to columns within child rows
-	> .@{spartan-namespace}@{col-name} {
+	@column-fullname: ~'.@{spartan-namespace}@{col-name}';
+
+	> @{column-fullname} {
 		.grid-span(@col-span);
 		.grid-offset(@offset);
 		.grid-reorder(@reorder);
@@ -233,9 +233,16 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // generate base grid classes valid for every setup
-.grid-core(@prefix: g-) {
-	@spartan-namespace: @prefix;
-	
+.grid-core(@ns: g) {
+	.set-namespace(@ns) when not (@ns = '') {
+		@spartan-namespace: ~'@{ns}-';
+	}
+	.set-namespace(@ns) when (default()) {
+		@spartan-namespace: ~'@{ns}';
+	}
+
+	.set-namespace(@ns);
+
 	// prefixed clearfix mixin from h5bp for grid only
 	.grid-cf() {
 		&:before,
@@ -261,7 +268,7 @@
 			position: relative;
 		}
 	}
-	
+
 	// base grid layout styles, valid for every grid setup
 	.@{spartan-namespace}row,
 	.@{spartan-namespace}col {
@@ -288,38 +295,71 @@
 	}
 }
 
-.grid-unlock(@config...) {
-	.grid-gutter() {
-		// base row and gutter styles must be set anew
-		.@{spartan-namespace}row {
-			.spartan-gutter(-1) !important;
-		}
-	
-		.@{spartan-namespace}col {
-			// one gutter indent for each column
-			.spartan-gutter(1) !important;
-			// columns should per default span the whole width if none is set
-			.grid-span(@spartan-grid-max-cols);
-		}
+.grid-gutter() {
+	// base row and gutter styles must be set anew
+	.@{spartan-namespace}row {
+		.spartan-gutter(-1) !important;
 	}
-	
-	@spartan-grid-fixed-width: extract(@config, 2);
-	@spartan-grid-fixed-gutter: extract(@config, 3);
-	@spartan-grid-max-cols: extract(@config, 5);
 
-	@spartan-grid-type: extract(@config, 1);
-	@spartan-grid-gutter-type: extract(@config, 4);
-	
-	@spartan-precision: 6;
-	
-	// set up grid styles depending on an included config
-	.spartan-grid();
-	.grid-gutter();
+	.@{spartan-namespace}col {
+		// one gutter indent for each column
+		.spartan-gutter(1) !important;
+		// columns should per default span the whole width if none is set
+		.grid-span(@spartan-grid-max-cols);
+	}
 }
 
-.grid-generate() {
-	// generate grid classes
+.grid-unlock(@config...) {
+	@spartan-grid-fixed-width: extract(@config, 1);
+	@spartan-grid-fixed-gutter: extract(@config, 3);
+	@spartan-grid-max-cols: extract(@config, 5);
+	@spartan-grid-type: extract(@config, 2);
+	@spartan-grid-gutter-type: extract(@config, 4);
 
+	// Float precision used for rounding is the most important variable because we get different behaviours over browsers
+	// and certain grid container widths. Note that rounding issues only exist for width and padding style properties.
+	//
+	// There are two factors to consider when adjusting the precision:
+	// - precision value itself
+	// - using round(), floor() or ceil() to calculate width and padding (column gutter)
+	//
+	// Tests have shown these behaviours:
+	//
+	// - Using precision < 3:
+	//     - We get inaccurate values with round(), floor(), and ceil()
+	// - Using precision = 3:
+	//     - We get inaccurate values in Safari when using floor(),
+	//     - We get inaccurate values with round() and ceil() which leads to jumping columns,
+	//       with round() starting in containers larger than ~800px (FF)
+	// - Using precision = 4:
+	//     - We get inaccurate values in Safari when using round() and floor()
+	//     - We get an overall good behaviour when using ceil(),
+	//       columns will start jumping in containers larger than ~2200px (FF)
+	// - Using precision > 4:
+	//     - We get inaccurate values in Safari with round() and floor()
+	//     - We get an overall good behaviour when using ceil()
+	//
+	// Recommendation:
+	// Using a float precision of 5 together with ceil() seems to be the smallest possible,
+	// most accurate amount for a future-proof grid system.
+
+	@spartan-precision: 5;
+
+	// set up grid styles depending on an included config
+	.spartan-grid();
+}
+
+.grid-generate(@prefix: '') {
+	.set-prefix(@prefix) when not (@prefix = '') {
+		@spartan-prefix: ~'@{prefix}-';
+	}
+	.set-prefix(@prefix) when (default()) {
+		@spartan-prefix: ~'@{prefix}';
+	}
+
+	.set-prefix(@prefix);
+
+	// generate grid classes
 	// Parameters:
 	// 1) amount of iterations
 	// 2) class selector prefix to generate
@@ -330,14 +370,17 @@
 	//
 	// NOTE: you can not use the generated classes themselves as mixins!
 
-	.spartan-grid > .spartan-loop(@spartan-grid-max-cols - 1, ~'@{spartan-namespace}span', 'grid-span');
-	.spartan-grid > .spartan-loop(@spartan-grid-max-cols - 1, ~'@{spartan-namespace}offset', 'grid-offset');
-	.spartan-grid > .spartan-loop(@spartan-grid-max-cols - 1, ~'@{spartan-namespace}push', 'grid-push');
-	.spartan-grid > .spartan-loop(@spartan-grid-max-cols - 1, ~'@{spartan-namespace}pull', 'grid-pull');
+	@spartan-classname: ~'@{spartan-namespace}@{spartan-prefix}';
+
+	.spartan-grid > .spartan-loop(@spartan-grid-max-cols - 1, ~'@{spartan-classname}span', 'grid-span');
+	.spartan-grid > .spartan-loop(@spartan-grid-max-cols - 1, ~'@{spartan-classname}offset', 'grid-offset');
+	.spartan-grid > .spartan-loop(@spartan-grid-max-cols - 1, ~'@{spartan-classname}push', 'grid-push');
+	.spartan-grid > .spartan-loop(@spartan-grid-max-cols - 1, ~'@{spartan-classname}pull', 'grid-pull');
 }
 
-.grid-bundle(@prefix: g-, @config...) {
-	.grid-core(@prefix);
+.grid-bundle(@ns: g, @config...) {
+	.grid-core(@ns);
 	.grid-unlock(@config);
+	.grid-gutter();
 	.grid-generate();
 }
