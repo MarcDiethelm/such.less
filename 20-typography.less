@@ -15,6 +15,8 @@
 #type {
 	// set default variables, overwrite in sub bundles if needed
 	@font-family    : @font-default;
+	@font-size      : @font-size-default;
+	@line-height    : @line-height-default;
 	@font-weight    : normal;
 
 	// optimised text rendering
@@ -31,9 +33,10 @@
 			font-family: @font-family;
 			font-weight: @font-weight;
 		}
-		
-		// applies to all below //
+
+		// applies to all mixin calls below
 		.size(@_) {
+			// using base style via extensible class (created below bundle) to save bytes
 			&:extend(.class-title);
 		}
 
@@ -55,15 +58,16 @@
 			font-family: @font-family;
 			font-weight: @font-weight;
 		}
-		
-		// applied to all below //
+
+		// applies to all mixin calls below
+		// using base style via extensible class (created below bundle) to save bytes
 		.size(@_) {
 			&:extend(.class-copy);
 		}
 
 		.size('default', ...) {
-			font-size: 13px;
-			line-height: 17px;
+			font-size: @font-size;
+			line-height: @line-height;
 		}
 
 		.size('small', ...) {
@@ -76,8 +80,8 @@
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	#link {
 		@color: @color-link;
-		
-		// applies to all below //
+
+		// applies to all mixin calls below
 		.style(@_) {
 			color: @color;
 			text-decoration: none;
@@ -99,12 +103,12 @@
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// BASE TYPO STYLE CLASSES TO EXTEND
+// CREATE EXTENSIBLE BASE STYLE CLASSES FOR THE SIZE MIXINS
 
 .class-title {
-	#type > #title > .style;
+	#type > #title > .style();
 }
 
 .class-copy {
-	#type > #copy > .style;
+	#type > #copy > .style();
 }
