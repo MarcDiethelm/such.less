@@ -10,7 +10,7 @@
 // - 00-variables.less
 
 // grid demo
-.demo-grid {
+.such-demo {
 	// richtext-style style linking
 	h1:extend(.title-page) {}
 	h2:extend(.title-default) {
@@ -20,8 +20,12 @@
 		border-top: 1px solid lighten(@color-copy, 50%);
 	}
 	h3 {
+		&:extend(.title-sub);
 		margin: 1em 0;
 	}
+	.setup:extend(.such-demo h3) {
+		display: inline-block;
+	};
 
 	th {
 		text-align: left;

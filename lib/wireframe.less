@@ -45,6 +45,12 @@
 			content: 'large';
 		}
 	}
+
+	@media @m-x-large {
+		&:before {
+			content: 'x-large';
+		}
+	}
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -63,19 +69,29 @@
 .wf-box {
 	.wf-box-sizing();
 	display: block;
-	outline: 1px dashed #999;
+	outline: 1px dashed #aaa;
 	background-color: #eaeaea;
 	margin-bottom: 3px;
 	padding: .5rem;
-	
+
 	.wf-box {
 		background-color: #f8f8f8;
-		outline: 1px dotted #fff;
+		outline: 1px solid #fcfcfc;
+
+		.wf-box {
+			outline: 1px dashed #b4b4b4;
+			background-color: #eaeaea;
+
+			.wf-box {
+				outline: 1px solid #fcfcfc;
+				background-color: #f8f8f8;
+			}
+		}
 	}
 }
 .wf-box-dark:extend(.wf-box) {
 	background-color: #444;
-	
+
 	.wf-box-dark {
 		background-color: #555;
 	}
@@ -88,7 +104,7 @@
 	font-family: "Helvetica Neue", "Open Sans Light", Helvetica, sans-serif;
 	color: #777;
 	background-color: #eeeeff;
-	
+
 	&:before,
 	&:after {
 		content: '';
