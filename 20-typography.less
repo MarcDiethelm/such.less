@@ -27,50 +27,57 @@
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	#title {
-		@font-family: @font-title;
+		@font-family: @font-title-default;
 
-		.style() {
+		.style('default') {
 			font-family: @font-family;
 			font-weight: @font-weight;
-		}
-
-		// applies to all mixin calls below
-		.size(@_) {
-			// using base style via extensible class (created below bundle) to save bytes
-			&:extend(.class-title);
 		}
 
 		.size('default') {
 			font-size: 18px;
 			line-height: 20px;
+			@media @m-medium-up {
+				font-size: 20px;
+				line-height: 22px;
+			}
 		}
 
 		.size('page') {
-			font-size: 28px;
+			font-size: 26px;
 			line-height: 34px;
+			@media @m-medium-up {
+				font-size: 28px;
+				line-height: 36px;
+			}
+		}
+
+		.size('sub') {
+			font-size: 14px;
+			line-height: 18px;
+			@media @m-medium-up {
+				font-size: 16px;
+				line-height: 20px;
+			}
 		}
 
 	}
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	#copy {
-		.style() {
+		.style('default') {
 			font-family: @font-family;
 			font-weight: @font-weight;
 		}
 
-		// applies to all mixin calls below
-		// using base style via extensible class (created below bundle) to save bytes
-		.size(@_) {
-			&:extend(.class-copy);
-		}
 
-		.size('default', ...) {
+		.size('default') {
 			font-size: @font-size;
 			line-height: @line-height;
+			font-weight: @font-weight;
 		}
 
-		.size('small', ...) {
+		.size('small') {
 			font-size: 11px;
 			line-height: 14px;
 		}
@@ -83,8 +90,14 @@
 
 		// applies to all mixin calls below
 		.style(@_) {
-			color: @color;
-			text-decoration: none;
+			&:link,
+			&:hover,
+			&:active,
+			&:visited,
+			&:focus {
+				text-decoration: none;
+				color: @color;
+			}
 		}
 
 		.style('default') {
@@ -102,13 +115,28 @@
 	}
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// CREATE EXTENSIBLE BASE STYLE CLASSES FOR THE SIZE MIXINS
+/**
 
-.class-title {
-	#type > #title > .style();
-}
+Usage:
+	As HTML class
+	<h6 class="title-page">Lorem</h6>
 
-.class-copy {
-	#type > #copy > .style();
-}
+	In style sheet
+	.mod-example {
+
+		// extend
+		.header .title:extend(.title-claim); // or
+		.header .title { &.extend(.title-claim) };
+
+		// mixin
+		// default claim title
+		.header .title { .title-claim() };
+
+		// mixin
+		// local variation: normal weight
+		#typo > #title > .style('page');
+		// override styles for exceptions in design
+		font-weight: normal; // blame the designer
+	}
+
+**/

@@ -17,7 +17,7 @@
 // TYPOGRAPHY
 
 @font-default       : Helvetica, sans-serif;
-@font-title         : 'Open Sans Light', Helvetica, sans-serif;
+@font-title-default : 'Open Sans Light', Helvetica, sans-serif;
 //@font-icons       : 'Icons';
 @font-monospace     : Consolas, Monaco, 'Andale Mono', monospace; // as on MDN
 
@@ -47,21 +47,29 @@
 // BREAKPOINTS and MEDIA QUERIES
 
 // Breakpoints
-@bp-1: 40em;
-@bp-2: 65em;
+@bp-1: 33em; // s <-> m | 1 col <-> 2 col
+@bp-2: 48em; // m <-> l | 2 col <-> 3 col
+@bp-3: 64em; // l <-> xl | 3 col <-> 4 col
+
+@emPxRatio: 1/16;
 
 // Viewport Boundaries
 @vp-small-max: @bp-1;
-@vp-medium-min: (@bp-1 + 0.01);
+@vp-medium-min: (@bp-1 + @emPxRatio);
 @vp-medium-max: @bp-2;
-@vp-large-min: (@bp-2 + 0.01);
+@vp-large-min: (@bp-2 + @emPxRatio);
+@vp-large-max: @bp-3;
+@vp-x-large-min: (@bp-3 + @emPxRatio);
 
 // Media Queries
 @m-small: ~"(max-width: @{vp-small-max})";
 @m-medium: ~"(min-width: @{vp-medium-min}) and (max-width: @{vp-medium-max})";
 @m-medium-down: ~"(max-width: @{vp-medium-max})";
 @m-medium-up: ~"(min-width: @{vp-medium-min})";
-@m-large: ~"(min-width: @{vp-large-min})";
+@m-large: ~"(min-width: @{vp-large-min}) and (max-width: @{vp-large-max})";
+@m-large-up: ~"(min-width: @{vp-large-min})";
+@m-large-down: ~"(max-width: @{vp-large-max})";
+@m-x-large: ~"(min-width: @{vp-x-large-min})";
 
 // High DPI ("Retina") Query
 @px-ratio: 1.5;

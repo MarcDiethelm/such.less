@@ -45,26 +45,27 @@ body {
 // TYPOGRAPHY
 
 .title-page {
-	#type > #title > .size('default');
-
-	@media @m-medium-up {
-		#type > #title > .size('page');
-	}
+	#type > #title > .style('default');
+	#type > #title > .size('page');
 }
 
 .title-default {
+	#type > #title > .style('default');
 	#type > #title > .size('default');
 }
 
-.copy-default {
-	#type > #copy > .size('small');
+.title-sub {
+	#type > #title > .style('default');
+	#type > #title > .size('sub');
+}
 
-	@media @m-medium-up {
-		#type > #copy > .size('default');
-	}
+.copy-default {
+	#type > #copy > .style('default');
+	#type > #copy > .size('default');
 }
 
 .copy-small {
+	#type > #copy > .style('default');
 	#type > #copy > .size('small');
 }
 
