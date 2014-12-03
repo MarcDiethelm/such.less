@@ -1,15 +1,15 @@
 <!doctype html>
 <html lang="en">
+
 	<head>
 		<meta charset="UTF-8">
-		<title>Grid</title>
+		<title>Grid Setup</title>
 		<link rel="stylesheet" href="/static/build/styles.css">
 	</head>
+
 	<body class="demo-grid">
 		<main>
-			<h1 class="title-page">Spartan</h1>
-
-			<h2 class="title">Grid Setup</h2>
+			<h1 class="title-page">Grid Setup</h1>
 			<table>
 				<tbody>
 				<tr>
@@ -38,7 +38,7 @@
 				</tbody>
 			</table>
 
-			<h2 class="title">Basic Grid</h2>
+			<h2 class="title-default">Basic Grid</h2>
 
 			<div class="g-row">
 				<div class="g-col g-span-1"><span>1</span></div>
@@ -87,7 +87,7 @@
 			</div>
 
 
-			<h2 class="title">Grid Offsets</h2>
+			<h2 class="title-default">Grid Offsets</h2>
 
 
 			<div class="g-row">
@@ -133,62 +133,7 @@
 			<div class="g-row">
 				<div class="g-col g-span-11 g-offset-1"><span>1</span></div>
 			</div>
-
-			<h2 class="title">Responsive Grid Layouts</h2>
-
-			<h3 class="title-sub">Legend</h3>
-			<table>
-				<tbody>
-				<tr>
-					<th>L</th>
-					<td>Large</td>
-				</tr>
-				<tr>
-					<th>M</th>
-					<td>Medium</td>
-				</tr>
-				<tr>
-					<th>S</th>
-					<td>Small</td>
-				</tr>
-				</tbody>
-			</table>
-
-			<h3 class="title-sub">Layout 1: L 33/33/33 | M 50/50 | S 100 </h3>
-
-			<div class="g-row g-layout-1">
-				<div class="g-col"><span>column 1</span></div>
-				<div class="g-col"><span>column 2</span></div>
-				<div class="g-col"><span>column 3</span></div>
-				<div class="g-col"><span>column 4</span></div>
-				<div class="g-col"><span>column 5</span></div>
-				<div class="g-col"><span>column 6</span></div>
-			</div>
-			<h3 class="title-sub">Layout 2: L 50/50 | M 100 | S 100</h3>
-
-			<div class="g-row g-layout-2">
-				<div class="g-col"><span>column 1</span></div>
-				<div class="g-col"><span>column 2</span></div>
-				<div class="g-col"><span>column 3</span></div>
-				<div class="g-col"><span>column 4</span></div>
-			</div>
-			<h3 class="title-sub">Layout 3: L 66/33 | M 66/33 | S 100</h3>
-
-			<div class="g-row g-layout-3">
-				<div class="g-col g-col-1"><span>column 1</span></div>
-				<div class="g-col g-col-2"><span>column 2</span></div>
-			</div>
-
-			<h3 class="title-sub">Layout 4: L 25/25/25/25 | M 50/50 | S 100</h3>
-
-			<div class="g-row g-layout-4">
-				<div class="g-col"><span>column 1</span></div>
-				<div class="g-col"><span>column 2</span></div>
-				<div class="g-col"><span>column 3</span></div>
-				<div class="g-col"><span>column 4</span></div>
-			</div>
-
-			<h2 class="title">Column Ordering</h2>
+			<h2 class="title-default">Column Ordering</h2>
 
 			<h3>Layout 1</h3>
 
@@ -207,7 +152,7 @@
 				<div class="g-col g-span-3 g-pull-3"><span>col-4</span></div>
 			</div>
 
-			<h2 class="title">Nested Grids</h2>
+			<h2 class="title-default">Nested Grids</h2>
 
 			<h3 class="title-sub">Simple nested Columns</h3>
 
@@ -273,7 +218,7 @@
 				<div class="g-col g-col-2"><span>other</span></div>
 			</div>
 
-			<h2 class="title">Not-in-Grid Layouts</h2>
+			<h2 class="title-default">Not-in-Grid Layouts</h2>
 
 			<p>Since everything inside the mixins gets calculated with given (floating point) numbers you can actually
 				set any width
@@ -282,7 +227,7 @@
 			<p>Attention! You can't properly use the responsive helper <code>.col-set-equal</code> when using non-grid
 				layouts!</p>
 
-			<h3 class="title-sub">Layout 1: L 9 columns | M 7 columns | S 5 columns</h3>
+			<h3 class="title-sub">Layout 1: S 5 columns | M 7 columns | L 9 columns</h3>
 
 			<div class="g-row g-layout-nogrid-1">
 				<div class="g-col"><span>column 1</span></div>
@@ -295,6 +240,7 @@
 				<div class="g-col"><span>column 8</span></div>
 				<div class="g-col"><span>column 9</span></div>
 			</div>
+
 		</main>
 	</body>
 </html>
