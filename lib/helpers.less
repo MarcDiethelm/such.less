@@ -7,7 +7,7 @@
  */
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// CSS3 BROWSER PREFIXERS
+// CSS3 BROWSER PREFIXES
 
 .box-sizing(@boundaries: border-box) {
 	-webkit-box-sizing: @boundaries;
@@ -66,7 +66,7 @@
 // messy placeholder color mixin because placeholder selectors cannot be chained
 .placeholder-color(@color: inherit, @transparency: 100%) {
 	@c-target: fade(@color, @transparency);
-	
+
 	::-webkit-input-placeholder {
 		// WebKit browsers
 		color: @c-target;
@@ -240,6 +240,14 @@
 // use h5bp .hidden styles for this
 [hidden] {
 	&:extend(.hidden);
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// CONVERT
+
+.remPx(@property, @rem) {
+	@{property}: unit((@rem * @font-size-default), px);
+	@{property}: unit(@rem, rem);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
