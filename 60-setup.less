@@ -48,21 +48,34 @@ body {
 .title-page {
 	#type > #title > .style('default');
 	#type > #title > .size('page');
+	&.spaced {
+		&:extend(.title-page);
+		#type > #title > .spacing('page');
+	}
 }
 
 .title-default {
 	#type > #title > .style('default');
 	#type > #title > .size('default');
+	&.spaced {
+		&:extend(.title-default);
+		#type > #title > .spacing('default');
+	}
 }
 
 .title-sub {
 	#type > #title > .style('default');
 	#type > #title > .size('sub');
+	&.spaced {
+		&:extend(.title-sub);
+		#type > #title > .spacing('sub');
+	}
 }
 
 .copy-default {
 	#type > #copy > .style('default');
 	#type > #copy > .size('default');
+	margin: 0;
 }
 
 .copy-small {

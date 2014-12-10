@@ -32,6 +32,7 @@
 		.style('default') {
 			font-family: @font-family;
 			font-weight: @font-weight;
+			margin: 0;
 		}
 
 		.size('default') {
@@ -59,6 +60,21 @@
 				font-size: 16px;
 				line-height: 22px;
 			}
+		}
+
+		.spacing('default') {
+			.remPx(margin-top, 3);
+			.remPx(margin-bottom, 4);
+		}
+
+		.spacing('page') {
+			.remPx(margin-top, 4);
+			.remPx(margin-bottom, 5);
+		}
+
+		.spacing('sub') {
+			.remPx(margin-bottom, 1);
+			.remPx(margin-bottom, 2);
 		}
 
 	}
